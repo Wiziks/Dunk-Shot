@@ -19,21 +19,27 @@ public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
     public void OnDrag(PointerEventData eventData) {
         Touch touch = Input.GetTouch(0);
+
         float distance = Vector2.Distance(_startPoint, touch.position);
         Vector2 tempPoint = new Vector2(_startPoint.x, touch.position.y);
-
         float distanceFingerToTempPoint = Vector2.Distance(touch.position, tempPoint);
         float angle = Mathf.Asin(distanceFingerToTempPoint / distance) * 180 / Mathf.PI;
 
         if (_startPoint.y > touch.position.y) angle = 180f - angle;
         if (_startPoint.x > touch.position.x) angle *= -1f;
 
+        Vector2 delta;
+        delta = _startPoint - touch.position;
+        if (distance > Ball.Instance.MaxSpeedMagnitude) {
+            delta = delta.normalized * Ball.Instance.MaxSpeedMagnitude;
+            distance = Ball.Instance.MaxSpeedMagnitude;
+        }
+
         CurrentBasket.Configure(angle, distance);
-        Ball.Instance.ConfigureTrajectory(-touch.position + _startPoint);
+        Ball.Instance.Configure(delta, distance);
     }
 
     public void OnPointerUp(PointerEventData eventData) {
-        CurrentBasket.SetBasketState(BasketState.Static);
-        Ball.Instance.ThrowBall();
+        Ball.Instance.ThrowBall(CurrentBasket);
     }
 }

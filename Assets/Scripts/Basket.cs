@@ -33,7 +33,7 @@ public class Basket : MonoBehaviour {
 
         transform.rotation = Quaternion.Euler(0, 0, -zAngle - 180f);
 
-        float meshScaleY = _startMeshYScale + distance / 1000f;
+        float meshScaleY = _startMeshYScale + distance / Ball.Instance.MaxSpeedMagnitude;
         if (meshScaleY > _maxScaleOfMesh) meshScaleY = _maxScaleOfMesh;
 
         _mesh.localScale = new Vector3(_mesh.localScale.x, meshScaleY, _mesh.localScale.z);

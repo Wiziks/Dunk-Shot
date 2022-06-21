@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c68d299da0ff143aa3014f58f25110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dotPrefab: {fileID: 7931731511974957027, guid: 4d6786f5b0067be4fb3e108809329019, type: 3}
+  _dotPrefab: {fileID: 7931731511974957026, guid: 4d6786f5b0067be4fb3e108809329019, type: 3}
   _dotCount: 10
 --- !u!1 &260943308
 GameObject:
@@ -1148,6 +1148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _power: 0.02
+  _minSpeedMagnitude: 175
+  _maxSpeedMagnitude: 450
   _trajectoryRenderer: {fileID: 190555546}
 --- !u!58 &2127608560
 CircleCollider2D:

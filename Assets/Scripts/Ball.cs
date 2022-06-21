@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
     public static Ball Instance;
-    [SerializeField] private float _power = 1;
+    [SerializeField] private float _power = 0.05f;
+    [SerializeField] private float _minSpeedMagnitude = 200f;
+    [SerializeField] private float _maxSpeedMagnitude = 450f;
     [SerializeField] private TrajectoryRenderer _trajectoryRenderer;
     private Rigidbody2D _ballRb;
     private Vector3 _startSpeed;
+    private float _currentSpeedMagnitude;
 
     void Start() {
         Instance = this;
         _ballRb = GetComponent<Rigidbody2D>();
     }
 
-    public void ConfigureTrajectory(Vector3 speed) {
+    public void Configure(Vector3 speed, float speedMagnitude) {
         _startSpeed = speed * _power;
-        _trajectoryRenderer.ShowTrajectory(transform.position, _startSpeed);
+        _currentSpeedMagnitude = speedMagnitude;
+
+        if (_currentSpeedMagnitude < _minSpeedMagnitude) {
+            _trajectoryRenderer.HideTrajectory();
+            return;
+        }
+
+        float alpha = speedMagnitude / _maxSpeedMagnitude;
+        _trajectoryRenderer.ShowTrajectory(transform.position, _startSpeed, alpha);
     }
 
     public void SetKinematic() {
@@ -25,10 +36,14 @@ public class Ball : MonoBehaviour {
         _ballRb.angularVelocity = 0;
     }
 
-    public void ThrowBall() {
+    public void ThrowBall(Basket currentBasket) {
+        if (_currentSpeedMagnitude < _minSpeedMagnitude) return;
+
         _ballRb.bodyType = RigidbodyType2D.Dynamic;
         _ballRb.AddForce(_startSpeed, ForceMode2D.Impulse);
-        _ballRb.AddTorque(1, ForceMode2D.Impulse);
+        _ballRb.AddTorque(0.1f, ForceMode2D.Impulse);
+        _trajectoryRenderer.HideTrajectory();
+        currentBasket.SetBasketState(BasketState.Static);
     }
 
     public float Speed {
@@ -37,4 +52,6 @@ public class Ball : MonoBehaviour {
             return sqrMagnitude * sqrMagnitude;
         }
     }
+
+    public float MaxSpeedMagnitude { get => _maxSpeedMagnitude; }
 }
