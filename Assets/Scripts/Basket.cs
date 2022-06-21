@@ -19,6 +19,7 @@ public class Basket : MonoBehaviour {
     private float _startMeshYScale;
     private float _startBallTargetYPosition;
     private float _ballSpeed;
+    private bool _firstTimeInBasket = true;
 
     private void Start() {
         _basketState = BasketState.Static;
@@ -51,6 +52,13 @@ public class Basket : MonoBehaviour {
         _ballSpeed = Ball.Instance.Speed;
 
         Ball.Instance.SetKinematic();
+        StartCoroutine(AlignBasket());
+
+        if (_firstTimeInBasket) {
+            BasketManager.Instance.Spawn();
+            CameraController.Instance.TargetHeight = transform.position.y + 2f;
+            _firstTimeInBasket = false;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
@@ -60,15 +68,35 @@ public class Basket : MonoBehaviour {
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        _mesh.localScale = Vector3.Lerp(_mesh.localScale, new Vector3(_mesh.localScale.x, _startMeshYScale, _mesh.localScale.z), Time.deltaTime);
+        StartCoroutine(AlignMesh());
     }
 
-    private void ChangeRingColor() {
+    public void ChangeRingColor() {
         Color ringColor = (_basketState == BasketState.Static) ? _staticRingColor : _dynamicRingColor;
 
         _upperRing.color = ringColor;
         _lowerRing.color = ringColor;
     }
 
-    public void SetBasketState(BasketState basketState) => _basketState = basketState;
+    IEnumerator AlignBasket() {
+        for (float t = 0; t < 1f; t += Time.deltaTime * 2f) {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, t);
+            yield return null;
+        }
+        transform.rotation = Quaternion.identity;
+        Ball.Instance.transform.position = _ballTargetPoint.position;
+    }
+
+    IEnumerator AlignMesh() {
+        Vector3 targetScale = new Vector3(_mesh.localScale.x, _startMeshYScale, _mesh.localScale.z);
+        for (float t = 0; t < 1f; t += Time.deltaTime * 2f) {
+            _mesh.localScale = Vector3.Lerp(_mesh.localScale, targetScale, t);
+            yield return null;
+        }
+        _mesh.localScale = targetScale;
+    }
+
+    public BasketState BasketState { set => _basketState = value; }
+
+    public bool FirstTimeInBasket { set => _firstTimeInBasket = value; }
 }

@@ -8,7 +8,7 @@ public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public Basket CurrentBasket { private get; set; }
     private Vector2 _startPoint;
 
-    private void Start() {
+    private void Awake() {
         Instance = this;
     }
 

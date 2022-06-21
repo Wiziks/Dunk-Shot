@@ -8,7 +8,7 @@ public class TrajectoryRenderer : MonoBehaviour {
     private void Start() {
         dotsArray = new SpriteRenderer[_dotCount];
         for (int i = 0; i < dotsArray.Length; i++) {
-            dotsArray[i] = Instantiate(_dotPrefab);
+            dotsArray[i] = Instantiate(_dotPrefab, transform);
 
             Vector3 prefabScale = _dotPrefab.transform.localScale;
             dotsArray[i].transform.localScale = new Vector3(prefabScale.x - 0.02f * i, prefabScale.y - 0.02f * i, prefabScale.z);

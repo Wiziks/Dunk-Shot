@@ -12,8 +12,11 @@ public class Ball : MonoBehaviour {
     private Vector3 _startSpeed;
     private float _currentSpeedMagnitude;
 
-    void Start() {
+    private void Awake() {
         Instance = this;
+    }
+
+    void Start() {
         _ballRb = GetComponent<Rigidbody2D>();
     }
 
@@ -43,7 +46,7 @@ public class Ball : MonoBehaviour {
         _ballRb.AddForce(_startSpeed, ForceMode2D.Impulse);
         _ballRb.AddTorque(0.1f, ForceMode2D.Impulse);
         _trajectoryRenderer.HideTrajectory();
-        currentBasket.SetBasketState(BasketState.Static);
+        currentBasket.BasketState = BasketState.Static;
     }
 
     public float Speed {
