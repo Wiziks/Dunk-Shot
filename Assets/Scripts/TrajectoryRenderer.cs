@@ -1,27 +1,33 @@
 using UnityEngine;
 
 public class TrajectoryRenderer : MonoBehaviour {
-    private LineRenderer lineRendererComponent;
+    [SerializeField] private GameObject _dotPrefab;
+    [SerializeField] private int _dotCount = 10;
+    private GameObject[] dotsArray;
 
     private void Start() {
-        lineRendererComponent = GetComponent<LineRenderer>();
+        dotsArray = new GameObject[_dotCount];
+        for (int i = 0; i < dotsArray.Length; i++) {
+            dotsArray[i] = Instantiate(_dotPrefab);
+
+            Vector3 prefabScale = _dotPrefab.transform.localScale;
+            dotsArray[i].transform.localScale = new Vector3(prefabScale.x - 0.02f * i, prefabScale.y - 0.02f * i, prefabScale.z);
+
+            dotsArray[i].SetActive(false);
+        }
     }
 
     public void ShowTrajectory(Vector3 origin, Vector3 speed) {
-        Vector3[] points = new Vector3[100];
-        lineRendererComponent.positionCount = points.Length;
-
-        for (int i = 0; i < points.Length; i++) {
+        for (int i = 0; i < dotsArray.Length; i++) {
             float time = i * 0.1f;
-
-            points[i] = origin + speed * time + Physics.gravity * time * time / 2f;
-
-            // if (points[i].y < 0) {
-            //     lineRendererComponent.positionCount = i + 1;
-            //     break;
-            // }
+            Vector2 dotPosition = origin + speed * time + Physics.gravity * time * time / 2f;
+            dotsArray[i].transform.position = dotPosition;
+            dotsArray[i].SetActive(true);
         }
+    }
 
-        lineRendererComponent.SetPositions(points);
+    public void HideTrajectory() {
+        for (int i = 0; i < dotsArray.Length; i++)
+            dotsArray[i].SetActive(false);
     }
 }
