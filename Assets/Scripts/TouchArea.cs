@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler {
+    [SerializeField] private GameObject _mainMenu;
+    [SerializeField] private GameObject _inGamePanel;
     public static TouchArea Instance;
     public Basket CurrentBasket { private get; set; }
     private Vector2 _startPoint;
@@ -15,6 +17,8 @@ public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public void OnPointerDown(PointerEventData eventData) {
         Touch touch = Input.GetTouch(0);
         _startPoint = touch.position;
+        _mainMenu.SetActive(false);
+        _inGamePanel.SetActive(true);
     }
 
     public void OnDrag(PointerEventData eventData) {

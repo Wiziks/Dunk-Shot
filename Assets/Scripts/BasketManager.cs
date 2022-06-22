@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 enum SpawnVariantsByRotation {
     None,
@@ -18,9 +19,11 @@ public class BasketManager : MonoBehaviour {
     [SerializeField] private float _maxXBound;
     [SerializeField] private float _minYBound;
     [SerializeField] private float _maxYBound;
+    [SerializeField] private TextMeshProUGUI _scoreText;
     private Basket[] _basketPool;
     private int currentPoolIndex = 0;
     private bool _isBasketStarting;
+    private int _score = 0;
     public static BasketManager Instance;
 
     private void Awake() {
@@ -72,6 +75,9 @@ public class BasketManager : MonoBehaviour {
 
         _basketPool[currentPoolIndex].BasketState = BasketState.Static;
         _basketPool[currentPoolIndex].ChangeRingColor();
+
+        _score++;
+        _scoreText.text = _score + "";
 
         currentPoolIndex++;
         if (currentPoolIndex == _basketPool.Length) currentPoolIndex = 0;

@@ -8,6 +8,8 @@ public class Ball : MonoBehaviour {
     [SerializeField] private float _minSpeedMagnitude = 200f;
     [SerializeField] private float _maxSpeedMagnitude = 450f;
     [SerializeField] private TrajectoryRenderer _trajectoryRenderer;
+    [SerializeField] private GameObject _inGamePanel;
+    [SerializeField] private GameObject _losePanel;
     private Rigidbody2D _ballRb;
     private Vector3 _startSpeed;
     private float _currentSpeedMagnitude;
@@ -18,6 +20,13 @@ public class Ball : MonoBehaviour {
 
     void Start() {
         _ballRb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update() {
+        if (transform.position.y < -5f) {
+            _inGamePanel.SetActive(false);
+            _losePanel.SetActive(true);
+        }
     }
 
     public void Configure(Vector3 speed, float speedMagnitude) {

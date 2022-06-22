@@ -22,6 +22,13 @@ public class TrajectoryRenderer : MonoBehaviour {
             float time = i * 0.1f;
 
             Vector2 dotPosition = origin + speed * time + Physics.gravity * time * time / 2f;
+
+            if (Mathf.Abs(dotPosition.x) > Borders.Instance.BorderPosition) {
+                speed.x *= -1f;
+                origin.x += (Borders.Instance.BorderPosition + 0.5f) * ((dotPosition.x > 0) ? 1f : -1f);
+                dotPosition = origin + speed * time + Physics.gravity * time * time / 2f;
+            }
+
             dotsArray[i].transform.position = dotPosition;
 
             dotsArray[i].color = new Color(dotsArray[i].color.r, dotsArray[i].color.g, dotsArray[i].color.b, alpha);

@@ -55,6 +55,10 @@ public class Basket : MonoBehaviour {
         StartCoroutine(AlignBasket());
 
         if (_firstTimeInBasket) {
+            float cameraHeigthOffset = -2f - transform.position.y;
+            CameraController.Instance.transform.position = new Vector3(CameraController.Instance.transform.position.x, cameraHeigthOffset, CameraController.Instance.transform.position.z);
+            transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
+            Ball.Instance.transform.position = _ballTargetPoint.position;
             BasketManager.Instance.Spawn();
             CameraController.Instance.TargetHeight = transform.position.y + 2f;
             _firstTimeInBasket = false;
@@ -94,6 +98,9 @@ public class Basket : MonoBehaviour {
             yield return null;
         }
         _mesh.localScale = targetScale;
+
+        Vector3 ballTargetOffset = new Vector3(_ballTargetPoint.localPosition.x, _startBallTargetYPosition, 0);
+        _ballTargetPoint.localPosition = ballTargetOffset;
     }
 
     public BasketState BasketState { set => _basketState = value; }
