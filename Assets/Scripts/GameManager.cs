@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
+    [SerializeField] private TextMeshProUGUI _finalScoreText;
+    [SerializeField] private TextMeshProUGUI _bestScoreText;
     private string _highScoreSave { get; } = "HighScoreSave";
     private string _nightModeSave { get; } = "NightModeSave";
     public static GameManager Instance;
@@ -23,11 +26,17 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SetHighScore(int currentScore) {
+        _finalScoreText.text = currentScore + "";
+
         if (PlayerPrefs.HasKey(_highScoreSave)) {
             float highScore = PlayerPrefs.GetInt(_highScoreSave);
-            if (currentScore <= highScore) return;
+            if (currentScore <= highScore) {
+                _bestScoreText.text = highScore + "";
+                return;
+            }
         }
 
+        _bestScoreText.text = currentScore + "";
         PlayerPrefs.SetInt(_highScoreSave, currentScore);
         PlayerPrefs.Save();
     }

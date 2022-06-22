@@ -82,4 +82,8 @@ public class BasketManager : MonoBehaviour {
         currentPoolIndex++;
         if (currentPoolIndex == _basketPool.Length) currentPoolIndex = 0;
     }
+
+    public void GameOver() {
+        GameManager.Instance.SetHighScore(_score);
+    }
 }

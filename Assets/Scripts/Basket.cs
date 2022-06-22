@@ -45,9 +45,9 @@ public class Basket : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        ChangeRingColor();
         TouchArea.Instance.CurrentBasket = this;
         _basketState = BasketState.Dynamic;
+        ChangeRingColor();
 
         _ballSpeed = Ball.Instance.Speed;
 

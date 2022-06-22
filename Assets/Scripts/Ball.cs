@@ -23,10 +23,7 @@ public class Ball : MonoBehaviour {
     }
 
     private void Update() {
-        if (transform.position.y < -5f) {
-            _inGamePanel.SetActive(false);
-            _losePanel.SetActive(true);
-        }
+        if (transform.position.y < -5f) GameOver();
     }
 
     public void Configure(Vector3 speed, float speedMagnitude) {
@@ -56,6 +53,12 @@ public class Ball : MonoBehaviour {
         _ballRb.AddTorque(0.1f, ForceMode2D.Impulse);
         _trajectoryRenderer.HideTrajectory();
         currentBasket.BasketState = BasketState.Static;
+    }
+
+    private void GameOver() {
+        _inGamePanel.SetActive(false);
+        _losePanel.SetActive(true);
+        BasketManager.Instance.GameOver();
     }
 
     public float Speed {
