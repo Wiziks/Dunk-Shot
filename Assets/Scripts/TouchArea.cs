@@ -19,6 +19,7 @@ public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         _startPoint = touch.position;
         _mainMenu.SetActive(false);
         _inGamePanel.SetActive(true);
+        Ball.Instance.Configure(Vector3.zero, 0);
     }
 
     public void OnDrag(PointerEventData eventData) {
@@ -44,6 +45,7 @@ public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     }
 
     public void OnPointerUp(PointerEventData eventData) {
-        Ball.Instance.ThrowBall(CurrentBasket);
+        if (CurrentBasket.BasketState == BasketState.Dynamic)
+            Ball.Instance.ThrowBall(CurrentBasket);
     }
 }

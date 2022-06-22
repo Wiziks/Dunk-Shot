@@ -45,9 +45,9 @@ public class Basket : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        _basketState = BasketState.Dynamic;
         ChangeRingColor();
         TouchArea.Instance.CurrentBasket = this;
+        _basketState = BasketState.Dynamic;
 
         _ballSpeed = Ball.Instance.Speed;
 
@@ -103,7 +103,7 @@ public class Basket : MonoBehaviour {
         _ballTargetPoint.localPosition = ballTargetOffset;
     }
 
-    public BasketState BasketState { set => _basketState = value; }
+    public BasketState BasketState { get => _basketState; set => _basketState = value; }
 
     public bool FirstTimeInBasket { set => _firstTimeInBasket = value; }
 }

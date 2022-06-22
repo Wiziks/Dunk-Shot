@@ -17,15 +17,9 @@ public class Slider : MonoBehaviour {
     [SerializeField] private Vector3 _onSwitcherPosition;
     [SerializeField] private Vector3 _offSwitcherPosition;
     [SerializeField] private float _timeToSwitchState;
-    float _switcherHeight;
+    [SerializeField] private Image _imageComponent;
     private SliderState _sliderState;
-    private Image _imageComponent;
 
-    private void Start() {
-        _imageComponent = GetComponent<Image>();
-        _switcherHeight = _switcher.rectTransform.rect.height;
-        SwitchOn();
-    }
 
     [ContextMenu("Switch State")]
     public void SwitchState() {
@@ -35,22 +29,32 @@ public class Slider : MonoBehaviour {
             SwitchOn();
     }
 
-    private void SwitchOn() {
+    public void SwitchOn() {
         _sliderState = SliderState.ON;
 
         _offText.enabled = false;
         _onText.enabled = true;
 
-        StartCoroutine(ReplaceSwitch(_onSwitcherPosition, _enableColor));
+        if (gameObject.activeInHierarchy)
+            StartCoroutine(ReplaceSwitch(_onSwitcherPosition, _enableColor));
+        else {
+            _switcher.rectTransform.localPosition = _onSwitcherPosition;
+            _imageComponent.color = _enableColor;
+        }
     }
 
-    private void SwitchOff() {
+    public void SwitchOff() {
         _sliderState = SliderState.OFF;
 
         _offText.enabled = true;
         _onText.enabled = false;
 
-        StartCoroutine(ReplaceSwitch(_offSwitcherPosition, _disableColor));
+        if (gameObject.activeInHierarchy)
+            StartCoroutine(ReplaceSwitch(_offSwitcherPosition, _disableColor));
+        else {
+            _switcher.rectTransform.localPosition = _offSwitcherPosition;
+            _imageComponent.color = _disableColor;
+        }
     }
 
     IEnumerator ReplaceSwitch(Vector3 target, Color imageComponentColor) {
@@ -61,6 +65,6 @@ public class Slider : MonoBehaviour {
         }
 
         _switcher.rectTransform.localPosition = target;
-        _switcher.rectTransform.sizeDelta = new Vector2(_switcher.rectTransform.rect.width, _switcherHeight);
+        _imageComponent.color = imageComponentColor;
     }
 }

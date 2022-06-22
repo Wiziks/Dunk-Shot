@@ -1014,6 +1014,7 @@ GameObject:
   - component: {fileID: 491987794}
   - component: {fileID: 491987793}
   - component: {fileID: 491987792}
+  - component: {fileID: 491987795}
   m_Layer: 5
   m_Name: Night mode
   m_TagString: Untagged
@@ -1085,7 +1086,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 491987793}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 491987795}
+        m_TargetAssemblyTypeName: NightModeSettings, Assembly-CSharp
+        m_MethodName: SwitchNightMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &491987793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,6 +1137,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491987790}
   m_CullTransparentMesh: 1
+--- !u!114 &491987795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491987790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80574f53b43cca4483056c09d11be00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalModeColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
+  _nightModeColor: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 1}
+  _background: {fileID: 1921463137}
+  _inGamePause: {fileID: 1974702850}
+  _settings: {fileID: 1830714649}
+  _lampTurnOn: {fileID: 1116642086}
+  _lampTurnOff: {fileID: 1737319344}
+  _nightModeSlider: {fileID: 751191202}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1608,7 @@ GameObject:
   - component: {fileID: 631632679}
   - component: {fileID: 631632680}
   m_Layer: 0
-  m_Name: Menu Manager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2319,7 +2352,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 777694561}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1830714647}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &777694561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2703,8 +2748,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1143670896}
   - {fileID: 1577539850}
+  - {fileID: 1143670896}
   - {fileID: 537069423}
   - {fileID: 1974702849}
   - {fileID: 1830714648}
@@ -3105,7 +3150,7 @@ RectTransform:
   - {fileID: 491987791}
   - {fileID: 367953611}
   m_Father: {fileID: 923264235}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3126,7 +3171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3493,6 +3538,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 491987795}
+        m_TargetAssemblyTypeName: NightModeSettings, Assembly-CSharp
+        m_MethodName: SwitchNightMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1423726617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3771,7 +3828,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 923264235}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3912,7 +3969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1737319343
 RectTransform:
   m_ObjectHideFlags: 0
