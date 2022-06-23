@@ -16,6 +16,7 @@ public class Ball : MonoBehaviour {
     private float _currentSpeedMagnitude;
     private int _perfectThrowsStrike = 0;
     private int _bounceStrike = 0;
+    private bool _isBasketStarting = true;
 
     private void Awake() {
         Instance = this;
@@ -48,6 +49,11 @@ public class Ball : MonoBehaviour {
         _ballRb.angularVelocity = 0;
         throwScore = 0;
 
+        if (_isBasketStarting) {
+            _isBasketStarting = false;
+            return;
+        }
+
         if (!firstTimeInBasket) return;
 
         _perfectThrowsStrike++;
@@ -73,7 +79,7 @@ public class Ball : MonoBehaviour {
         BasketManager.Instance.GameOver();
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.GetComponent<Basket>())
             _perfectThrowsStrike = -1;
         else if (other.gameObject.tag == "Border") {
