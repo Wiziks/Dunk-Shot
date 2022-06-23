@@ -41,7 +41,7 @@ public class BasketManager : MonoBehaviour {
         _isBasketStarting = true;
     }
 
-    public void Spawn() {
+    public void Spawn(int throwScore) {
         if (_isBasketStarting) {
             _isBasketStarting = false;
             return;
@@ -76,7 +76,7 @@ public class BasketManager : MonoBehaviour {
         _basketPool[currentPoolIndex].BasketState = BasketState.Static;
         _basketPool[currentPoolIndex].ChangeRingColor();
 
-        _score++;
+        _score += throwScore;
         _scoreText.text = _score + "";
 
         currentPoolIndex++;

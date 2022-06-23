@@ -15,6 +15,9 @@ public class Basket : MonoBehaviour {
     [SerializeField] private Transform _ballTargetPoint;
     [SerializeField] private SpriteRenderer _upperRing;
     [SerializeField] private SpriteRenderer _lowerRing;
+    [SerializeField] private Animator _effectAnimator;
+    [SerializeField] private AnimationClip _throwAnimation;
+    [SerializeField] private SpriteRenderer _inRingEffect;
     private BasketState _basketState;
     private float _startMeshYScale;
     private float _startBallTargetYPosition;
@@ -25,8 +28,11 @@ public class Basket : MonoBehaviour {
         _basketState = BasketState.Static;
         ChangeRingColor();
 
+        _effectAnimator.enabled = false;
+
         _startMeshYScale = _mesh.localScale.y;
         _startBallTargetYPosition = _ballTargetPoint.localPosition.y;
+        _inRingEffect.color = _staticRingColor;
     }
 
     public void Configure(float zAngle, float distance) {
@@ -51,7 +57,7 @@ public class Basket : MonoBehaviour {
 
         _ballSpeed = Ball.Instance.Speed;
 
-        Ball.Instance.SetKinematic();
+        Ball.Instance.OnRing(_firstTimeInBasket, out int throwScore);
         StartCoroutine(AlignBasket());
 
         if (_firstTimeInBasket) {
@@ -59,8 +65,11 @@ public class Basket : MonoBehaviour {
             CameraController.Instance.transform.position = new Vector3(CameraController.Instance.transform.position.x, cameraHeigthOffset, CameraController.Instance.transform.position.z);
             transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
             Ball.Instance.transform.position = _ballTargetPoint.position;
-            BasketManager.Instance.Spawn();
+            BasketManager.Instance.Spawn(throwScore);
             CameraController.Instance.TargetHeight = transform.position.y + 2f;
+
+            StartCoroutine(InRingEffect());
+
             _firstTimeInBasket = false;
         }
     }
@@ -101,6 +110,34 @@ public class Basket : MonoBehaviour {
 
         Vector3 ballTargetOffset = new Vector3(_ballTargetPoint.localPosition.x, _startBallTargetYPosition, 0);
         _ballTargetPoint.localPosition = ballTargetOffset;
+    }
+
+    IEnumerator InRingEffect() {
+        _inRingEffect.enabled = true;
+
+        Vector3 startScale = _inRingEffect.transform.localScale;
+        Vector3 targetVector = new Vector3(_upperRing.transform.localScale.x, _upperRing.transform.localScale.y, 1f);
+        Color targetColor = new Color(_inRingEffect.color.r, _inRingEffect.color.g, _inRingEffect.color.b, 0);
+
+        for (float t = 0; t < 1f; t += Time.deltaTime * 3f) {
+            _inRingEffect.transform.localScale = Vector3.Lerp(startScale, targetVector, t);
+            _inRingEffect.color = Color.Lerp(_inRingEffect.color, targetColor, t / 3f);
+            yield return null;
+        }
+        _inRingEffect.enabled = false;
+
+        _inRingEffect.color = new Color(_inRingEffect.color.r, _inRingEffect.color.g, _inRingEffect.color.b, 1);
+        _inRingEffect.transform.localScale = startScale;
+    }
+
+    public void PlayThrowEffect() {
+        _effectAnimator.enabled = true;
+        _effectAnimator.Play(_throwAnimation.name);
+        Invoke(nameof(TurnOffAnimator), _throwAnimation.length);
+    }
+
+    private void TurnOffAnimator() {
+        _effectAnimator.enabled = false;
     }
 
     public BasketState BasketState { get => _basketState; set => _basketState = value; }

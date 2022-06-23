@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: 6468288168051395604
     second: Piatas  Miscellaneous_3
+  - first:
+      213: 4645597385573999644
+    second: Piatas  Miscellaneous_4
+  - first:
+      213: -2662388136082858720
+    second: Piatas  Miscellaneous_5
+  - first:
+      213: 2153383255555117222
+    second: Piatas  Miscellaneous_6
+  - first:
+      213: 3925825326729527288
+    second: Piatas  Miscellaneous_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -194,6 +206,90 @@ TextureImporter:
       bones: []
       spriteID: 41cc09181d9f3c950800000000000000
       internalID: 6468288168051395604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Piatas  Miscellaneous_4
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 688
+        width: 922
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c142f90753a787040800000000000000
+      internalID: 4645597385573999644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Piatas  Miscellaneous_5
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 942
+        width: 261
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d119e981c4d0bd0800000000000000
+      internalID: -2662388136082858720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Piatas  Miscellaneous_6
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 943
+        width: 366
+        height: 77
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a013ac69aa52ed10800000000000000
+      internalID: 2153383255555117222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Piatas  Miscellaneous_7
+      rect:
+        serializedVersion: 2
+        x: 1375
+        y: 942
+        width: 365
+        height: 68
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fff1f1b5555b7630800000000000000
+      internalID: 3925825326729527288
       vertices: []
       indices: 
       edges: []

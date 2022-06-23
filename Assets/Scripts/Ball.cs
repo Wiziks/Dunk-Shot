@@ -10,9 +10,12 @@ public class Ball : MonoBehaviour {
     [SerializeField] private TrajectoryRenderer _trajectoryRenderer;
     [SerializeField] private GameObject _inGamePanel;
     [SerializeField] private GameObject _losePanel;
+    [SerializeField] private TextAnnouncers _textAnnouncers;
     private Rigidbody2D _ballRb;
     private Vector3 _startSpeed;
     private float _currentSpeedMagnitude;
+    private int _perfectThrowsStrike = 0;
+    private int _bounceStrike = 0;
 
     private void Awake() {
         Instance = this;
@@ -39,10 +42,18 @@ public class Ball : MonoBehaviour {
         _trajectoryRenderer.ShowTrajectory(transform.position, _startSpeed, alpha);
     }
 
-    public void SetKinematic() {
+    public void OnRing(bool firstTimeInBasket, out int throwScore) {
         _ballRb.bodyType = RigidbodyType2D.Kinematic;
         _ballRb.velocity = Vector2.zero;
         _ballRb.angularVelocity = 0;
+        throwScore = 0;
+
+        if (!firstTimeInBasket) return;
+
+        _perfectThrowsStrike++;
+        throwScore = 1 + _perfectThrowsStrike + _bounceStrike;
+        _textAnnouncers.StartFlow(transform.position, _perfectThrowsStrike, _bounceStrike, throwScore);
+        _bounceStrike = 0;
     }
 
     public void ThrowBall(Basket currentBasket) {
@@ -52,6 +63,7 @@ public class Ball : MonoBehaviour {
         _ballRb.AddForce(_startSpeed, ForceMode2D.Impulse);
         _ballRb.AddTorque(0.1f, ForceMode2D.Impulse);
         _trajectoryRenderer.HideTrajectory();
+        currentBasket.PlayThrowEffect();
         currentBasket.BasketState = BasketState.Static;
     }
 
@@ -59,6 +71,14 @@ public class Ball : MonoBehaviour {
         _inGamePanel.SetActive(false);
         _losePanel.SetActive(true);
         BasketManager.Instance.GameOver();
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.GetComponent<Basket>())
+            _perfectThrowsStrike = -1;
+        else if (other.gameObject.tag == "Border") {
+            _bounceStrike++;
+        }
     }
 
     public float Speed {
