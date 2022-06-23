@@ -8,12 +8,20 @@ using TMPro;
 public class GameManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI _finalScoreText;
     [SerializeField] private TextMeshProUGUI _bestScoreText;
+    [SerializeField] private TextMeshProUGUI _startCountText;
     private string _highScoreSave { get; } = "HighScoreSave";
     private string _nightModeSave { get; } = "NightModeSave";
+    private string _starCountSave { get; } = "StarCountSave";
+    private int _starCount;
     public static GameManager Instance;
 
     private void Awake() {
         Instance = this;
+    }
+
+    private void Start() {
+        _starCount = PlayerPrefs.HasKey(_starCountSave) ? PlayerPrefs.GetInt(_starCountSave) : 0;
+        UpdateStarCountText();
     }
 
     public void SetTimeScale(float value) {
@@ -44,6 +52,17 @@ public class GameManager : MonoBehaviour {
     public void SaveNightModePrefs(bool isNightMode) {
         PlayerPrefs.SetInt(_nightModeSave, isNightMode ? 1 : 0);
         PlayerPrefs.Save();
+    }
+
+    public void ChangeStarCount(int delta) {
+        _starCount += delta;
+        PlayerPrefs.SetInt(_starCountSave, _starCount);
+        PlayerPrefs.Save();
+        UpdateStarCountText();
+    }
+
+    private void UpdateStarCountText() {
+        _startCountText.text = _starCount + "";
     }
 
     public string HighScoreSave { get => _highScoreSave; }

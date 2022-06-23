@@ -82,7 +82,7 @@ public class Ball : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.GetComponent<Basket>())
             _perfectThrowsStrike = -1;
-        else if (other.gameObject.tag == "Border") {
+        else if (other.gameObject.tag == "Bounce Bonus") {
             _bounceStrike++;
         }
     }

@@ -1,7 +1,40 @@
 fileFormatVersion: 2
 guid: a6ab7c8a0ab59594e99f1a158b22af88
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8905254450827920212
+    second: Bouncers_0
+  - first:
+      213: -4958955317313038676
+    second: Bouncers_1
+  - first:
+      213: -5948796433569971859
+    second: Bouncers_2
+  - first:
+      213: 5762537278828353890
+    second: Bouncers_3
+  - first:
+      213: 5483792411113639068
+    second: Bouncers_4
+  - first:
+      213: -4413634762716686341
+    second: Bouncers_5
+  - first:
+      213: -36375685958968364
+    second: Bouncers_6
+  - first:
+      213: 923058294898029221
+    second: Bouncers_7
+  - first:
+      213: 1404798090322896206
+    second: Bouncers_8
+  - first:
+      213: 4816722525429432187
+    second: Bouncers_9
+  - first:
+      213: 5172586041044228320
+    second: Bouncers_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +74,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +108,264 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Bouncers_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2173
+        width: 205
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cac7fef424e2a6480800000000000000
+      internalID: -8905254450827920212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1950.3636
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca6958e99604e2bb0800000000000000
+      internalID: -4958955317313038676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1734.3636
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6183f76921a17da0800000000000000
+      internalID: -5948796433569971859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1518.3636
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2699285bf15a8ff40800000000000000
+      internalID: 5762537278828353890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1302.3636
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9c496eb4285a1c40800000000000000
+      internalID: 5483792411113639068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1086.3636
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf7d4f7519e9fb2c0800000000000000
+      internalID: -4413634762716686341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 870.36365
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db54ff9184ce7ff0800000000000000
+      internalID: -36375685958968364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 654.36365
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a2ff5ee0ac5fcc00800000000000000
+      internalID: 923058294898029221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 438.36365
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e45e7d29b68de7310800000000000000
+      internalID: 1404798090322896206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 222.36363
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7ff7d5ed9f68d240800000000000000
+      internalID: 4816722525429432187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bouncers_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6.363632
+        width: 216
+        height: 216.63637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e8d59a4997b8c740800000000000000
+      internalID: 5172586041044228320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

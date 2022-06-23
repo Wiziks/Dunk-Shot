@@ -11,6 +11,13 @@ enum SpawnVariantsByRotation {
     Angle45,
 }
 
+enum SpawnVariantsByModificators {
+    None,
+    Star,
+    Wall,
+    Bouncer
+}
+
 public class BasketManager : MonoBehaviour {
     [SerializeField] private Basket _basketPrefab;
     [SerializeField] private Vector3 _firstBasketPosition;
@@ -20,6 +27,9 @@ public class BasketManager : MonoBehaviour {
     [SerializeField] private float _minYBound;
     [SerializeField] private float _maxYBound;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private Transform _bouncer;
+    [SerializeField] private Transform _wall;
+    [SerializeField] private Star _star;
     private Basket[] _basketPool;
     private int currentPoolIndex = 0;
     private bool _isBasketStarting;
@@ -56,22 +66,43 @@ public class BasketManager : MonoBehaviour {
         _basketPool[currentPoolIndex].transform.position = spawnPosition;
         _basketPool[currentPoolIndex].FirstTimeInBasket = true;
 
-        int spawnVariantsCount = Enum.GetNames(typeof(SpawnVariantsByRotation)).Length;
-        int randomSpawnVariant = UnityEngine.Random.Range(0, spawnVariantsCount);
+        int spawnVariantsByRotationCount = Enum.GetNames(typeof(SpawnVariantsByRotation)).Length;
+        int randomSpawnByRotationVariant = UnityEngine.Random.Range(0, spawnVariantsByRotationCount);
 
         Vector3 basketRotation = Vector3.zero;
-        if ((SpawnVariantsByRotation)randomSpawnVariant == SpawnVariantsByRotation.None) {
+        if ((SpawnVariantsByRotation)randomSpawnByRotationVariant == SpawnVariantsByRotation.None) {
             basketRotation = Vector3.zero;
-        } else if ((SpawnVariantsByRotation)randomSpawnVariant == SpawnVariantsByRotation.Angle15) {
+        } else if ((SpawnVariantsByRotation)randomSpawnByRotationVariant == SpawnVariantsByRotation.Angle15) {
             basketRotation = new Vector3(0f, 0f, 15f);
-        } else if ((SpawnVariantsByRotation)randomSpawnVariant == SpawnVariantsByRotation.Angle30) {
+        } else if ((SpawnVariantsByRotation)randomSpawnByRotationVariant == SpawnVariantsByRotation.Angle30) {
             basketRotation = new Vector3(0f, 0f, 30f);
-        } else if ((SpawnVariantsByRotation)randomSpawnVariant == SpawnVariantsByRotation.Angle45) {
+        } else if ((SpawnVariantsByRotation)randomSpawnByRotationVariant == SpawnVariantsByRotation.Angle45) {
             basketRotation = new Vector3(0f, 0f, 45f);
         }
 
         if (Ball.Instance.transform.position.x > 0) basketRotation *= -1f;
         _basketPool[currentPoolIndex].transform.rotation = Quaternion.Euler(basketRotation);
+
+        _star.gameObject.SetActive(false);
+        _wall.gameObject.SetActive(false);
+        _bouncer.gameObject.SetActive(false);
+
+        int spawnVariantsByModificatorsCount = Enum.GetNames(typeof(SpawnVariantsByModificators)).Length;
+        int randomSpawnByModificatorsVariant = UnityEngine.Random.Range(0, spawnVariantsByModificatorsCount);
+
+        if ((SpawnVariantsByModificators)randomSpawnByModificatorsVariant == SpawnVariantsByModificators.Star) {
+            _star.transform.position = _basketPool[currentPoolIndex].transform.position + Vector3.up * 0.75f;
+            _star.gameObject.SetActive(true);
+        } else if ((SpawnVariantsByModificators)randomSpawnByModificatorsVariant == SpawnVariantsByModificators.Wall) {
+            _wall.position = _basketPool[currentPoolIndex].transform.position + Vector3.up * 0.5f;
+            float wallX = 0.75f;
+            if (Ball.Instance.transform.position.x > 0) wallX *= -1f;
+            _wall.position += Vector3.right * wallX;
+            _wall.gameObject.SetActive(true);
+        } else if ((SpawnVariantsByModificators)randomSpawnByModificatorsVariant == SpawnVariantsByModificators.Bouncer) {
+            _bouncer.position = _basketPool[currentPoolIndex].transform.position + Vector3.up * 1.25f;
+            _bouncer.gameObject.SetActive(true);
+        }
 
         _basketPool[currentPoolIndex].BasketState = BasketState.Static;
         _basketPool[currentPoolIndex].ChangeRingColor();
