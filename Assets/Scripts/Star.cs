@@ -22,5 +22,6 @@ public class Star : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         GameManager.Instance.ChangeStarCount(1);
         gameObject.SetActive(false);
+        AudioManager.Instance.PlayCoin();
     }
 }

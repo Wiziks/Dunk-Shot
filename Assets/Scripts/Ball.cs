@@ -59,11 +59,21 @@ public class Ball : MonoBehaviour {
         _perfectThrowsStrike++;
         throwScore = 1 + _perfectThrowsStrike + _bounceStrike;
         _textAnnouncers.StartFlow(transform.position, _perfectThrowsStrike, _bounceStrike, throwScore);
+        AudioManager.Instance.PlayScore(_perfectThrowsStrike);
+
         _bounceStrike = 0;
     }
 
     public void ThrowBall(Basket currentBasket) {
         if (_currentSpeedMagnitude < _minSpeedMagnitude) return;
+
+        float magnitudeSegment = (_maxSpeedMagnitude - _minSpeedMagnitude) / 3f;
+        if (_currentSpeedMagnitude < _minSpeedMagnitude + magnitudeSegment)
+            AudioManager.Instance.PlayReleaseLow();
+        else if (_currentSpeedMagnitude > _maxSpeedMagnitude - magnitudeSegment)
+            AudioManager.Instance.PlayReleaseHigh();
+        else
+            AudioManager.Instance.PlayReleaseMedium();
 
         _ballRb.bodyType = RigidbodyType2D.Dynamic;
         _ballRb.AddForce(_startSpeed, ForceMode2D.Impulse);
@@ -77,13 +87,16 @@ public class Ball : MonoBehaviour {
         _inGamePanel.SetActive(false);
         _losePanel.SetActive(true);
         BasketManager.Instance.GameOver();
+        AudioManager.Instance.PlayGameOver();
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.GetComponent<Basket>())
+        if (other.gameObject.GetComponent<Basket>()) {
             _perfectThrowsStrike = -1;
-        else if (other.gameObject.tag == "Bounce Bonus") {
+            AudioManager.Instance.PlayBorderBall();
+        } else if (other.gameObject.tag == "Bounce Bonus") {
             _bounceStrike++;
+            AudioManager.Instance.PlayWallObstacle();
         }
     }
 

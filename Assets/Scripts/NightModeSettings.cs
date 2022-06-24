@@ -43,6 +43,7 @@ public class NightModeSettings : MonoBehaviour {
             PlayerPrefs.SetInt(GameManager.Instance.NightModeSave, 1);
             PlayerPrefs.Save();
             _nightModeSlider.SwitchOff();
+            AudioManager.Instance.PlayNightModeOff();
         } else {
             _isNightMode = true;
 
@@ -56,6 +57,7 @@ public class NightModeSettings : MonoBehaviour {
             PlayerPrefs.SetInt(GameManager.Instance.NightModeSave, 0);
             PlayerPrefs.Save();
             _nightModeSlider.SwitchOn();
+            AudioManager.Instance.PlayNightModeOn();
         }
     }
 }
