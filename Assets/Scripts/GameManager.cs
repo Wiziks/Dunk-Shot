@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
     private string _starCountSave { get; } = "StarCountSave";
     private bool _isVibrationOn;
     private string _vibrationStateSave { get; } = "VibrationStateSave";
+    private string _choosenBallSkinSave { get; } = "ChoosenBallSkinSave";
+    private int _choosenBallSkinSequenceNumber;
     private int _starCount;
     public static GameManager Instance;
 
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         _starCount = PlayerPrefs.HasKey(_starCountSave) ? PlayerPrefs.GetInt(_starCountSave) : 0;
         UpdateStarCountText();
+
+        _choosenBallSkinSequenceNumber = PlayerPrefs.HasKey(_choosenBallSkinSave) ? PlayerPrefs.GetInt(_choosenBallSkinSave) : 0;
 
         if (PlayerPrefs.HasKey(_vibrationStateSave)) {
             _isVibrationOn = PlayerPrefs.GetInt(_vibrationStateSave) == 0 ? false : true;
@@ -93,5 +97,14 @@ public class GameManager : MonoBehaviour {
 
     public string HighScoreSave { get => _highScoreSave; }
     public string NightModeSave { get => _nightModeSave; }
+    public int ChoosenBallSkinSequenceNumber {
+        get => _choosenBallSkinSequenceNumber;
+        set {
+            _choosenBallSkinSequenceNumber = value;
+            PlayerPrefs.SetInt(_choosenBallSkinSave, _choosenBallSkinSequenceNumber);
+            PlayerPrefs.Save();
+        }
+    }
 
+    public int StarCount { get => _starCount; }
 }

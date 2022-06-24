@@ -9,6 +9,7 @@ public class NightModeSettings : MonoBehaviour {
     [SerializeField] private SpriteRenderer _background;
     [SerializeField] private Image _inGamePause;
     [SerializeField] private Image _settings;
+    [SerializeField] private Image _shop;
     [SerializeField] private Image _lampTurnOn;
     [SerializeField] private Image _lampTurnOff;
     [SerializeField] private Slider _nightModeSlider;
@@ -36,6 +37,7 @@ public class NightModeSettings : MonoBehaviour {
             _background.color = _normalModeColor;
             _inGamePause.color = _normalModeColor;
             _settings.color = _normalModeColor;
+            _shop.color = _normalModeColor;
 
             _lampTurnOn.enabled = false;
             _lampTurnOff.enabled = true;
@@ -50,6 +52,7 @@ public class NightModeSettings : MonoBehaviour {
             _background.color = _nightModeColor;
             _inGamePause.color = _nightModeColor;
             _settings.color = _nightModeColor;
+            _shop.color = _nightModeColor;
 
             _lampTurnOn.enabled = true;
             _lampTurnOff.enabled = false;

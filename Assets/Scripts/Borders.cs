@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Borders : MonoBehaviour {
+    [SerializeField] private PhysicsMaterial2D _borderPhysicsMaterial2D;
     private float _borderPosition;
     public static Borders Instance;
 
@@ -25,6 +26,9 @@ public class Borders : MonoBehaviour {
 
         leftCollider.size = new Vector2(1f, 20f);
         rightCollider.size = new Vector2(1f, 20f);
+
+        leftCollider.sharedMaterial = _borderPhysicsMaterial2D;
+        rightCollider.sharedMaterial = _borderPhysicsMaterial2D;
     }
 
     public float BorderPosition { get => _borderPosition; }

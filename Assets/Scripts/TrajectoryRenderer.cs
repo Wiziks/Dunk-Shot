@@ -18,16 +18,22 @@ public class TrajectoryRenderer : MonoBehaviour {
     }
 
     public void ShowTrajectory(Vector3 origin, Vector3 speed, float alpha) {
+        bool isSwitched = false;
+        bool isLeft = false;
         for (int i = 0; i < dotsArray.Length; i++) {
             float time = i * 0.1f;
 
             Vector2 dotPosition = origin + speed * time + Physics.gravity * time * time / 2f;
 
-            if (Mathf.Abs(dotPosition.x) > Borders.Instance.BorderPosition) {
+            if (Mathf.Abs(dotPosition.x) > Borders.Instance.BorderPosition && !isSwitched) {
                 speed.x *= -1f;
-                origin.x += (Borders.Instance.BorderPosition + 0.5f) * ((dotPosition.x > 0) ? 1f : -1f);
                 dotPosition = origin + speed * time + Physics.gravity * time * time / 2f;
+                isSwitched = true;
+                isLeft = dotPosition.x < 0;
             }
+
+            if (isSwitched)
+                dotPosition.x += (Borders.Instance.BorderPosition + 0.5f) * (isLeft ? 1f : -1f);
 
             dotsArray[i].transform.position = dotPosition;
 

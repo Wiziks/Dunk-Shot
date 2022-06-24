@@ -24,6 +24,7 @@ public class Ball : MonoBehaviour {
     private Transform _respawnPoint;
     private float _timer;
     private bool _isThrown;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake() {
         Instance = this;
@@ -31,6 +32,7 @@ public class Ball : MonoBehaviour {
 
     void Start() {
         _ballRb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update() {
@@ -94,13 +96,13 @@ public class Ball : MonoBehaviour {
 
         float magnitudeSegment = (_maxSpeedMagnitude - _minSpeedMagnitude) / 3f;
         if (_currentSpeedMagnitude < _minSpeedMagnitude + magnitudeSegment) {
-            if (_perfectThrowsStrike > 1) AudioManager.Instance.PlayFireReleaseLow();
+            if (_perfectThrowsStrike > 2) AudioManager.Instance.PlayFireReleaseLow();
             else AudioManager.Instance.PlayReleaseLow();
         } else if (_currentSpeedMagnitude > _maxSpeedMagnitude - magnitudeSegment) {
-            if (_perfectThrowsStrike > 1) AudioManager.Instance.PlayFireReleaseHigh();
+            if (_perfectThrowsStrike > 2) AudioManager.Instance.PlayFireReleaseHigh();
             else AudioManager.Instance.PlayReleaseHigh();
         } else {
-            if (_perfectThrowsStrike > 1) AudioManager.Instance.PlayFireReleaseMedium();
+            if (_perfectThrowsStrike > 2) AudioManager.Instance.PlayFireReleaseMedium();
             else AudioManager.Instance.PlayReleaseMedium();
         }
 
@@ -136,6 +138,10 @@ public class Ball : MonoBehaviour {
     public void RespawnBall() {
         transform.position = _respawnPoint.position;
         _isThrown = false;
+    }
+
+    public void ChangeSkin(Sprite skin) {
+        _spriteRenderer.sprite = skin;
     }
 
     public float Speed {
