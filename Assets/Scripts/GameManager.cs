@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
-        _starCount = PlayerPrefs.HasKey(_starCountSave) ? PlayerPrefs.GetInt(_starCountSave) : 0;
+        _starCount = PlayerPrefs.HasKey(_starCountSave) ? PlayerPrefs.GetInt(_starCountSave) : 500;
         UpdateStarCountText();
 
 

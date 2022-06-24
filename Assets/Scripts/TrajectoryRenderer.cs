@@ -27,9 +27,10 @@ public class TrajectoryRenderer : MonoBehaviour {
 
             if (Mathf.Abs(dotPosition.x) > Borders.Instance.BorderPosition && !isSwitched) {
                 speed.x *= -1f;
+                isLeft = dotPosition.x > 0;
+                Debug.Log(dotPosition.x);
                 dotPosition = origin + speed * time + Physics.gravity * time * time / 2f;
                 isSwitched = true;
-                isLeft = dotPosition.x < 0;
             }
 
             if (isSwitched)

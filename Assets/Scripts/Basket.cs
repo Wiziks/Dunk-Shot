@@ -55,7 +55,6 @@ public class Basket : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.transform.position.y < transform.position.y) return;
 
         TouchArea.Instance.CurrentBasket = this;
         _basketState = BasketState.Dynamic;

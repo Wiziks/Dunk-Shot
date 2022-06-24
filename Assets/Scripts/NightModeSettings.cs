@@ -25,7 +25,7 @@ public class NightModeSettings : MonoBehaviour {
                 _isNightMode = true;
             }
         } else {
-            _isNightMode = true;
+            _isNightMode = false;
         }
         SwitchNightMode();
     }
