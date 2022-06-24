@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour {
     public void ChangeVibrationState() {
         _isVibrationOn = !_isVibrationOn;
         _vibrationStateSlider.SwitchState();
+        PlayerPrefs.SetInt(_vibrationStateSave, _isVibrationOn ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public string HighScoreSave { get => _highScoreSave; }

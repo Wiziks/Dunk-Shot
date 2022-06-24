@@ -18,6 +18,10 @@ public class Basket : MonoBehaviour {
     [SerializeField] private Animator _effectAnimator;
     [SerializeField] private AnimationClip _throwAnimation;
     [SerializeField] private SpriteRenderer _inRingEffect;
+    [SerializeField] private Transform _starPositionPoint;
+    [SerializeField] private Transform _leftWallPositionPoint;
+    [SerializeField] private Transform _rightWallPositionPoint;
+    [SerializeField] private Transform _bouncerPositionPoint;
     private BasketState _basketState;
     private float _startMeshYScale;
     private float _startBallTargetYPosition;
@@ -51,9 +55,6 @@ public class Basket : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-
-
-
         TouchArea.Instance.CurrentBasket = this;
         _basketState = BasketState.Dynamic;
         ChangeRingColor();
@@ -142,6 +143,16 @@ public class Basket : MonoBehaviour {
     private void TurnOffAnimator() {
         _effectAnimator.enabled = false;
     }
+
+    public Vector3 StarPosition { get => _starPositionPoint.position; }
+
+    public Vector3 LeftWallPosition { get => _leftWallPositionPoint.position; }
+
+    public Vector3 RightWallPosition { get => _rightWallPositionPoint.position; }
+
+    public Transform BallTargetPoint { get => _ballTargetPoint; }
+
+    public Vector3 BouncerPosition { get => _bouncerPositionPoint.position; }
 
     public BasketState BasketState { get => _basketState; set => _basketState = value; }
 

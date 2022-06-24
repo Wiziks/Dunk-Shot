@@ -91,16 +91,18 @@ public class BasketManager : MonoBehaviour {
         int randomSpawnByModificatorsVariant = UnityEngine.Random.Range(0, spawnVariantsByModificatorsCount);
 
         if ((SpawnVariantsByModificators)randomSpawnByModificatorsVariant == SpawnVariantsByModificators.Star) {
-            _star.transform.position = _basketPool[currentPoolIndex].transform.position + Vector3.up * 0.75f;
+            _star.transform.position = _basketPool[currentPoolIndex].StarPosition;
             _star.gameObject.SetActive(true);
         } else if ((SpawnVariantsByModificators)randomSpawnByModificatorsVariant == SpawnVariantsByModificators.Wall) {
-            _wall.position = _basketPool[currentPoolIndex].transform.position + Vector3.up * 0.5f;
-            float wallX = 0.75f;
-            if (Ball.Instance.transform.position.x > 0) wallX *= -1f;
-            _wall.position += Vector3.right * wallX;
+            Vector3 wallPosition;
+
+            if (Ball.Instance.transform.position.x > 0) wallPosition = _basketPool[currentPoolIndex].RightWallPosition;
+            else wallPosition = _basketPool[currentPoolIndex].LeftWallPosition;
+            _wall.position = wallPosition;
+
             _wall.gameObject.SetActive(true);
         } else if ((SpawnVariantsByModificators)randomSpawnByModificatorsVariant == SpawnVariantsByModificators.Bouncer) {
-            _bouncer.position = _basketPool[currentPoolIndex].transform.position + Vector3.up * 1.25f;
+            _bouncer.position = _basketPool[currentPoolIndex].BouncerPosition;
             _bouncer.gameObject.SetActive(true);
         }
 

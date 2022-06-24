@@ -11,12 +11,17 @@ public class Ball : MonoBehaviour {
     [SerializeField] private GameObject _inGamePanel;
     [SerializeField] private GameObject _losePanel;
     [SerializeField] private TextAnnouncers _textAnnouncers;
+    [SerializeField] private float _timeToRespawn = 10f;
+    [SerializeField] private GameObject _stuckButton;
     private Rigidbody2D _ballRb;
     private Vector3 _startSpeed;
     private float _currentSpeedMagnitude;
     private int _perfectThrowsStrike = 0;
     private int _bounceStrike = 0;
     private bool _isBasketStarting = true;
+    private Transform _respawnPoint;
+    private float _timer;
+    private bool _isThrown;
 
     private void Awake() {
         Instance = this;
@@ -28,6 +33,12 @@ public class Ball : MonoBehaviour {
 
     private void Update() {
         if (transform.position.y < -5f) GameOver();
+
+        if (_isThrown) _timer += Time.deltaTime;
+        else _timer = 0f;
+
+        if (_timer > _timeToRespawn)
+            _stuckButton.SetActive(true);
     }
 
     public void Configure(Vector3 speed, float speedMagnitude) {
@@ -48,6 +59,7 @@ public class Ball : MonoBehaviour {
         _ballRb.velocity = Vector2.zero;
         _ballRb.angularVelocity = 0;
         throwScore = 0;
+        _isThrown = false;
 
         if (_isBasketStarting) {
             _isBasketStarting = false;
@@ -78,6 +90,9 @@ public class Ball : MonoBehaviour {
         else
             AudioManager.Instance.PlayReleaseMedium();
 
+        _respawnPoint = currentBasket.BallTargetPoint;
+        _isThrown = true;
+
         _ballRb.bodyType = RigidbodyType2D.Dynamic;
         _ballRb.AddForce(_startSpeed, ForceMode2D.Impulse);
         _ballRb.AddTorque(0.1f, ForceMode2D.Impulse);
@@ -87,6 +102,7 @@ public class Ball : MonoBehaviour {
     }
 
     private void GameOver() {
+        _isThrown = false;
         _inGamePanel.SetActive(false);
         _losePanel.SetActive(true);
         BasketManager.Instance.GameOver();
@@ -101,6 +117,11 @@ public class Ball : MonoBehaviour {
             _bounceStrike++;
             AudioManager.Instance.PlayWallObstacle();
         }
+    }
+
+    public void RespawnBall() {
+        transform.position = _respawnPoint.position;
+        _isThrown = false;
     }
 
     public float Speed {

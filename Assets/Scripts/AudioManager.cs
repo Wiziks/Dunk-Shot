@@ -105,5 +105,7 @@ public class AudioManager : MonoBehaviour {
     public void ChangeAudioState() {
         _isAudioOn = !_isAudioOn;
         _soundStateSlider.SwitchState();
+        PlayerPrefs.SetInt(_audioStateSave, _isAudioOn ? 1 : 0);
+        PlayerPrefs.Save();
     }
 }

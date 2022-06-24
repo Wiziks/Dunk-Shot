@@ -465,7 +465,7 @@ TextureImporter:
         width: 359
         height: 376
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -473,6 +473,27 @@ TextureImporter:
       bones: []
       spriteID: 853fb61dc33ba8770800000000000000
       internalID: 8613894311092417368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miscellaneous_14
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 5559
+        width: 481
+        height: 497
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3598915db40feda0800000000000000
+      internalID: -5913502574549887684
       vertices: []
       indices: 
       edges: []
