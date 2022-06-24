@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI _finalScoreText;
     [SerializeField] private TextMeshProUGUI _bestScoreText;
     [SerializeField] private TextMeshProUGUI _startCountText;
+    [SerializeField] private Slider _vibrationStateSlider;
     private string _highScoreSave { get; } = "HighScoreSave";
     private string _nightModeSave { get; } = "NightModeSave";
     private string _starCountSave { get; } = "StarCountSave";
+    private bool _isVibrationOn;
+    private string _vibrationStateSave { get; } = "VibrationStateSave";
     private int _starCount;
     public static GameManager Instance;
 
@@ -22,6 +25,17 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         _starCount = PlayerPrefs.HasKey(_starCountSave) ? PlayerPrefs.GetInt(_starCountSave) : 0;
         UpdateStarCountText();
+
+        if (PlayerPrefs.HasKey(_vibrationStateSave)) {
+            _isVibrationOn = PlayerPrefs.GetInt(_vibrationStateSave) == 0 ? false : true;
+        } else {
+            _isVibrationOn = true;
+            PlayerPrefs.SetInt(_vibrationStateSave, _isVibrationOn ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+
+        if (_isVibrationOn) _vibrationStateSlider.SwitchOn();
+        else _vibrationStateSlider.SwitchOff();
     }
 
     public void SetTimeScale(float value) {
@@ -63,6 +77,16 @@ public class GameManager : MonoBehaviour {
 
     private void UpdateStarCountText() {
         _startCountText.text = _starCount + "";
+    }
+
+    public void PlayVibration() {
+        if (_isVibrationOn)
+            Handheld.Vibrate();
+    }
+
+    public void ChangeVibrationState() {
+        _isVibrationOn = !_isVibrationOn;
+        _vibrationStateSlider.SwitchState();
     }
 
     public string HighScoreSave { get => _highScoreSave; }

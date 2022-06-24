@@ -61,6 +61,9 @@ public class Ball : MonoBehaviour {
         _textAnnouncers.StartFlow(transform.position, _perfectThrowsStrike, _bounceStrike, throwScore);
         AudioManager.Instance.PlayScore(_perfectThrowsStrike);
 
+        if (_perfectThrowsStrike > 0)
+            GameManager.Instance.PlayVibration();
+
         _bounceStrike = 0;
     }
 

@@ -594,9 +594,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1941916757}
-        m_TargetAssemblyTypeName: Slider, Assembly-CSharp
-        m_MethodName: SwitchState
+      - m_Target: {fileID: 631632680}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChangeVibrationState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1917,6 +1917,7 @@ MonoBehaviour:
   _finalScoreText: {fileID: 547487766}
   _bestScoreText: {fileID: 1827582953}
   _startCountText: {fileID: 895460088}
+  _vibrationStateSlider: {fileID: 1941916757}
 --- !u!1 &655032929
 GameObject:
   m_ObjectHideFlags: 0
@@ -5741,9 +5742,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1412523057}
-        m_TargetAssemblyTypeName: Slider, Assembly-CSharp
-        m_MethodName: SwitchState
+      - m_Target: {fileID: 1873068554}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: ChangeAudioState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
