@@ -22,7 +22,8 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioClip _shopLocked;
     [SerializeField] private AudioClip _shopSelect;
     [SerializeField] private Slider _soundStateSlider;
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _mainAudioSource;
+    [SerializeField] private AudioSource _playerAudioSource;
     private bool _isAudioOn;
     private string _audioStateSave { get; } = "AudioStateSave";
     public static AudioManager Instance;
@@ -32,7 +33,7 @@ public class AudioManager : MonoBehaviour {
     }
 
     private void Start() {
-        _audioSource = GetComponent<AudioSource>();
+        _mainAudioSource = GetComponent<AudioSource>();
 
         if (PlayerPrefs.HasKey(_audioStateSave)) {
             _isAudioOn = PlayerPrefs.GetInt(_audioStateSave) == 0 ? false : true;
@@ -48,94 +49,94 @@ public class AudioManager : MonoBehaviour {
 
     public void PlayBasketSpawn() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_basketSpawn);
+            _mainAudioSource.PlayOneShot(_basketSpawn);
     }
 
     public void PlayBorderBall() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_borderBall);
+            _mainAudioSource.PlayOneShot(_borderBall);
     }
 
     public void PlayCoin() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_coin);
+            _mainAudioSource.PlayOneShot(_coin);
     }
 
     public void PlayGameOver() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_gameOver);
+            _mainAudioSource.PlayOneShot(_gameOver);
     }
 
     public void PlayReleaseLow() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_releaseLow);
+            _playerAudioSource.PlayOneShot(_releaseLow);
     }
 
     public void PlayReleaseMedium() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_releaseMedium);
+            _playerAudioSource.PlayOneShot(_releaseMedium);
     }
 
     public void PlayReleaseHigh() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_releaseHigh);
+            _playerAudioSource.PlayOneShot(_releaseHigh);
     }
 
     public void PlayFireReleaseLow() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_releaseFireLow);
+            _playerAudioSource.PlayOneShot(_releaseFireLow);
     }
 
     public void PlayFireReleaseMedium() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_releaseFireMedium);
+            _playerAudioSource.PlayOneShot(_releaseFireMedium);
     }
 
     public void PlayFireReleaseHigh() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_releaseFireHigh);
+            _playerAudioSource.PlayOneShot(_releaseFireHigh);
     }
 
     public void PlayScore(int scorePerfect) {
         if (!_isAudioOn) return;
 
         if (scorePerfect == 0) {
-            _audioSource.PlayOneShot(_scoreSimple);
+            _mainAudioSource.PlayOneShot(_scoreSimple);
             return;
         }
 
         if (scorePerfect > _scorePerfect.Length) scorePerfect = _scorePerfect.Length;
-        _audioSource.PlayOneShot(_scorePerfect[scorePerfect - 1]);
+        _mainAudioSource.PlayOneShot(_scorePerfect[scorePerfect - 1]);
     }
 
     public void PlayWallObstacle() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_wallObstacle);
+            _mainAudioSource.PlayOneShot(_wallObstacle);
     }
 
     public void PlayNightModeOn() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_nightModeOn);
+            _mainAudioSource.PlayOneShot(_nightModeOn);
     }
 
     public void PlayNightModeOff() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_nightModeOff);
+            _mainAudioSource.PlayOneShot(_nightModeOff);
     }
 
     public void PlayShopBuy() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_shopBuy);
+            _mainAudioSource.PlayOneShot(_shopBuy);
     }
 
     public void PlayShopLocked() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_shopLocked);
+            _mainAudioSource.PlayOneShot(_shopLocked);
     }
 
     public void PlayShopSelect() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_shopSelect);
+            _mainAudioSource.PlayOneShot(_shopSelect);
     }
 
     public void ChangeAudioState() {
