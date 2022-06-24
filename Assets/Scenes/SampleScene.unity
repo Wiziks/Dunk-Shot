@@ -21716,6 +21716,7 @@ MonoBehaviour:
   _stuckButton: {fileID: 2107319285}
   _smokeParticles: {fileID: 1890951905}
   _fireParticles: {fileID: 1902872806}
+  _spriteRenderer: {fileID: 655032931}
 --- !u!58 &2127608560
 CircleCollider2D:
   m_ObjectHideFlags: 0

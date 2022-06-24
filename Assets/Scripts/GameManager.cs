@@ -22,13 +22,13 @@ public class GameManager : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
+        _choosenBallSkinSequenceNumber = PlayerPrefs.HasKey(_choosenBallSkinSave) ? PlayerPrefs.GetInt(_choosenBallSkinSave) : 0;
     }
 
     private void Start() {
         _starCount = PlayerPrefs.HasKey(_starCountSave) ? PlayerPrefs.GetInt(_starCountSave) : 0;
         UpdateStarCountText();
 
-        _choosenBallSkinSequenceNumber = PlayerPrefs.HasKey(_choosenBallSkinSave) ? PlayerPrefs.GetInt(_choosenBallSkinSave) : 0;
 
         if (PlayerPrefs.HasKey(_vibrationStateSave)) {
             _isVibrationOn = PlayerPrefs.GetInt(_vibrationStateSave) == 0 ? false : true;
@@ -107,4 +107,14 @@ public class GameManager : MonoBehaviour {
     }
 
     public int StarCount { get => _starCount; }
+
+    [ContextMenu("Give Stars")]
+    public void GiveStars() {
+        ChangeStarCount(500);
+    }
+
+    [ContextMenu("Delete All")]
+    public void DeleteAll() {
+        PlayerPrefs.DeleteAll();
+    }
 }

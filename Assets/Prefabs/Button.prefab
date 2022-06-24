@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ballImage: {fileID: 2056072021487881170}
-  _shoosenBacklight: {fileID: 2056072021338032090}
+  _choosenBacklight: {fileID: 2056072021338032090}
   _lockMode: {fileID: 2056072022311203089}
 --- !u!1 &2056072022311203089
 GameObject:

@@ -15,6 +15,7 @@ public class Ball : MonoBehaviour {
     [SerializeField] private GameObject _stuckButton;
     [SerializeField] private GameObject _smokeParticles;
     [SerializeField] private GameObject _fireParticles;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _ballRb;
     private Vector3 _startSpeed;
     private float _currentSpeedMagnitude;
@@ -24,7 +25,6 @@ public class Ball : MonoBehaviour {
     private Transform _respawnPoint;
     private float _timer;
     private bool _isThrown;
-    private SpriteRenderer _spriteRenderer;
 
     private void Awake() {
         Instance = this;
@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour {
 
     void Start() {
         _ballRb = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.sprite = Shop.Instance.GetBallSkin(GameManager.Instance.ChoosenBallSkinSequenceNumber);
     }
 
     private void Update() {
