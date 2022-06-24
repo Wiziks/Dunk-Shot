@@ -13,6 +13,8 @@ public class Ball : MonoBehaviour {
     [SerializeField] private TextAnnouncers _textAnnouncers;
     [SerializeField] private float _timeToRespawn = 10f;
     [SerializeField] private GameObject _stuckButton;
+    [SerializeField] private GameObject _smokeParticles;
+    [SerializeField] private GameObject _fireParticles;
     private Rigidbody2D _ballRb;
     private Vector3 _startSpeed;
     private float _currentSpeedMagnitude;
@@ -58,8 +60,16 @@ public class Ball : MonoBehaviour {
         _ballRb.bodyType = RigidbodyType2D.Kinematic;
         _ballRb.velocity = Vector2.zero;
         _ballRb.angularVelocity = 0;
+
         throwScore = 0;
         _isThrown = false;
+
+        if (_perfectThrowsStrike == 1) _smokeParticles.SetActive(true);
+        else if (_perfectThrowsStrike > 1) _fireParticles.SetActive(true);
+        else {
+            _smokeParticles.SetActive(false);
+            _fireParticles.SetActive(false);
+        }
 
         if (_isBasketStarting) {
             _isBasketStarting = false;
@@ -83,12 +93,16 @@ public class Ball : MonoBehaviour {
         if (_currentSpeedMagnitude < _minSpeedMagnitude) return;
 
         float magnitudeSegment = (_maxSpeedMagnitude - _minSpeedMagnitude) / 3f;
-        if (_currentSpeedMagnitude < _minSpeedMagnitude + magnitudeSegment)
-            AudioManager.Instance.PlayReleaseLow();
-        else if (_currentSpeedMagnitude > _maxSpeedMagnitude - magnitudeSegment)
-            AudioManager.Instance.PlayReleaseHigh();
-        else
-            AudioManager.Instance.PlayReleaseMedium();
+        if (_currentSpeedMagnitude < _minSpeedMagnitude + magnitudeSegment) {
+            if (_perfectThrowsStrike > 1) AudioManager.Instance.PlayFireReleaseLow();
+            else AudioManager.Instance.PlayReleaseLow();
+        } else if (_currentSpeedMagnitude > _maxSpeedMagnitude - magnitudeSegment) {
+            if (_perfectThrowsStrike > 1) AudioManager.Instance.PlayFireReleaseHigh();
+            else AudioManager.Instance.PlayReleaseHigh();
+        } else {
+            if (_perfectThrowsStrike > 1) AudioManager.Instance.PlayFireReleaseMedium();
+            else AudioManager.Instance.PlayReleaseMedium();
+        }
 
         _respawnPoint = currentBasket.BallTargetPoint;
         _isThrown = true;

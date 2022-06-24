@@ -10,6 +10,9 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioClip _releaseLow;
     [SerializeField] private AudioClip _releaseMedium;
     [SerializeField] private AudioClip _releaseHigh;
+    [SerializeField] private AudioClip _releaseFireLow;
+    [SerializeField] private AudioClip _releaseFireMedium;
+    [SerializeField] private AudioClip _releaseFireHigh;
     [SerializeField] private AudioClip _scoreSimple;
     [SerializeField] private AudioClip[] _scorePerfect;
     [SerializeField] private AudioClip _wallObstacle;
@@ -62,7 +65,7 @@ public class AudioManager : MonoBehaviour {
 
     public void PlayReleaseLow() {
         if (_isAudioOn)
-            _audioSource.PlayOneShot(_gameOver);
+            _audioSource.PlayOneShot(_releaseLow);
     }
 
     public void PlayReleaseMedium() {
@@ -73,6 +76,21 @@ public class AudioManager : MonoBehaviour {
     public void PlayReleaseHigh() {
         if (_isAudioOn)
             _audioSource.PlayOneShot(_releaseHigh);
+    }
+
+    public void PlayFireReleaseLow() {
+        if (_isAudioOn)
+            _audioSource.PlayOneShot(_releaseFireLow);
+    }
+
+    public void PlayFireReleaseMedium() {
+        if (_isAudioOn)
+            _audioSource.PlayOneShot(_releaseFireMedium);
+    }
+
+    public void PlayFireReleaseHigh() {
+        if (_isAudioOn)
+            _audioSource.PlayOneShot(_releaseFireHigh);
     }
 
     public void PlayScore(int scorePerfect) {
