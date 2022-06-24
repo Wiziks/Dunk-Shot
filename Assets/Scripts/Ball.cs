@@ -67,13 +67,6 @@ public class Ball : MonoBehaviour {
         throwScore = 0;
         _isThrown = false;
 
-        if (_perfectThrowsStrike == 1) _smokeParticles.SetActive(true);
-        else if (_perfectThrowsStrike > 1) _fireParticles.SetActive(true);
-        else {
-            _smokeParticles.SetActive(false);
-            _fireParticles.SetActive(false);
-        }
-
         if (_isBasketStarting) {
             _isBasketStarting = false;
             return;
@@ -143,6 +136,24 @@ public class Ball : MonoBehaviour {
 
     public void ChangeSkin(Sprite skin) {
         _spriteRenderer.sprite = skin;
+    }
+
+    public void TurnOnEffects() {
+        if (_perfectThrowsStrike == 1) {
+            _smokeParticles.SetActive(true);
+            _fireParticles.SetActive(false);
+        } else if (_perfectThrowsStrike > 1) {
+            _smokeParticles.SetActive(false);
+            _fireParticles.SetActive(true);
+        } else {
+            _smokeParticles.SetActive(false);
+            _fireParticles.SetActive(false);
+        }
+    }
+
+    public void TurnOffEffects() {
+        _smokeParticles.SetActive(false);
+        _fireParticles.SetActive(false);
     }
 
     public float Speed {

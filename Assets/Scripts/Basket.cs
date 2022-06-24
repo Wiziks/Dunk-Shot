@@ -66,6 +66,7 @@ public class Basket : MonoBehaviour {
         StartCoroutine(AlignBasket());
 
         if (_firstTimeInBasket) {
+            Ball.Instance.TurnOffEffects();
             float cameraHeigthOffset = -2f - transform.position.y;
             CameraController.Instance.transform.position = new Vector3(CameraController.Instance.transform.position.x, cameraHeigthOffset, CameraController.Instance.transform.position.z);
             transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
@@ -77,6 +78,8 @@ public class Basket : MonoBehaviour {
 
             _firstTimeInBasket = false;
         }
+
+        Ball.Instance.TurnOnEffects();
     }
 
     private void OnTriggerStay2D(Collider2D other) {
@@ -136,13 +139,13 @@ public class Basket : MonoBehaviour {
     }
 
     public void PlayThrowEffect() {
-        _effectAnimator.enabled = true;
+        _effectAnimator.gameObject.SetActive(true);
         _effectAnimator.Play(_throwAnimation.name);
         Invoke(nameof(TurnOffAnimator), _throwAnimation.length);
     }
 
     private void TurnOffAnimator() {
-        _effectAnimator.enabled = false;
+        _effectAnimator.gameObject.SetActive(false);
     }
 
     public Vector3 StarPosition { get => _starPositionPoint.position; }
