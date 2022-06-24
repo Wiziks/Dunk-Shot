@@ -78,7 +78,10 @@ public class AudioManager : MonoBehaviour {
     public void PlayScore(int scorePerfect) {
         if (!_isAudioOn) return;
 
-        if (scorePerfect == 0) _audioSource.PlayOneShot(_scoreSimple);
+        if (scorePerfect == 0) {
+            _audioSource.PlayOneShot(_scoreSimple);
+            return;
+        }
 
         if (scorePerfect > _scorePerfect.Length) scorePerfect = _scorePerfect.Length;
         _audioSource.PlayOneShot(_scorePerfect[scorePerfect - 1]);
