@@ -15771,6 +15771,9 @@ MonoBehaviour:
   _wallObstacle: {fileID: 8300000, guid: 95daafe5c1bee29478e477af36ce23be, type: 3}
   _nightModeOn: {fileID: 8300000, guid: 830a8c1f800972e4cb4b29109d8f61e0, type: 3}
   _nightModeOff: {fileID: 8300000, guid: 0c8f17235c24ca1459d5860476391e41, type: 3}
+  _shopBuy: {fileID: 8300000, guid: 8fc69ffcb16c6ca42b7b540c44add822, type: 3}
+  _shopLocked: {fileID: 8300000, guid: b6e38e2d8101abc46a47a332c55d4043, type: 3}
+  _shopSelect: {fileID: 8300000, guid: b03818e161ed4d141ac48df3129bd199, type: 3}
   _soundStateSlider: {fileID: 1412523057}
 --- !u!1 &1890951905
 GameObject:

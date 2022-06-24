@@ -50,13 +50,18 @@ public class Shop : MonoBehaviour {
                 _isBoughtSkin[SequenceNumber] = true;
                 PlayerPrefs.SetInt(_ballBuySave + SequenceNumber, 1);
                 PlayerPrefs.Save();
-            } else return;
+                AudioManager.Instance.PlayShopBuy();
+            } else {
+                AudioManager.Instance.PlayShopLocked();
+                return;
+            }
         }
 
         _shopButtons[GameManager.Instance.ChoosenBallSkinSequenceNumber].ChoosenBacklight.SetActive(false);
         GameManager.Instance.ChoosenBallSkinSequenceNumber = SequenceNumber;
         _shopButtons[SequenceNumber].ChoosenBacklight.SetActive(true);
         Ball.Instance.ChangeSkin(_ballSkins[SequenceNumber]);
+        AudioManager.Instance.PlayShopSelect();
     }
 
     public Sprite GetBallSkin(int _sequenceNumber) {

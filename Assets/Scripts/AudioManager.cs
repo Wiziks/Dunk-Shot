@@ -18,6 +18,9 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioClip _wallObstacle;
     [SerializeField] private AudioClip _nightModeOn;
     [SerializeField] private AudioClip _nightModeOff;
+    [SerializeField] private AudioClip _shopBuy;
+    [SerializeField] private AudioClip _shopLocked;
+    [SerializeField] private AudioClip _shopSelect;
     [SerializeField] private Slider _soundStateSlider;
     private AudioSource _audioSource;
     private bool _isAudioOn;
@@ -118,6 +121,21 @@ public class AudioManager : MonoBehaviour {
     public void PlayNightModeOff() {
         if (_isAudioOn)
             _audioSource.PlayOneShot(_nightModeOff);
+    }
+
+    public void PlayShopBuy() {
+        if (_isAudioOn)
+            _audioSource.PlayOneShot(_shopBuy);
+    }
+
+    public void PlayShopLocked() {
+        if (_isAudioOn)
+            _audioSource.PlayOneShot(_shopLocked);
+    }
+
+    public void PlayShopSelect() {
+        if (_isAudioOn)
+            _audioSource.PlayOneShot(_shopSelect);
     }
 
     public void ChangeAudioState() {
