@@ -16,6 +16,7 @@ public class Ball : MonoBehaviour {
     [SerializeField] private GameObject _smokeParticles;
     [SerializeField] private GameObject _fireParticles;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Shop _shop;
     private Rigidbody2D _ballRb;
     private Vector3 _startSpeed;
     private float _currentSpeedMagnitude;
@@ -32,7 +33,7 @@ public class Ball : MonoBehaviour {
 
     void Start() {
         _ballRb = GetComponent<Rigidbody2D>();
-        _spriteRenderer.sprite = Shop.Instance.GetBallSkin(GameManager.Instance.ChoosenBallSkinSequenceNumber);
+        _spriteRenderer.sprite = _shop.GetBallSkin(GameManager.Instance.ChoosenBallSkinSequenceNumber);
     }
 
     private void Update() {

@@ -1227,7 +1227,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9347,7 +9347,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -15273,7 +15273,7 @@ GameObject:
   - component: {fileID: 1811333431}
   - component: {fileID: 1811333430}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Customise Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15374,8 +15374,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: e0d692eac69e9994c9cf2993bf0149e2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -16703,7 +16703,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -21717,6 +21717,7 @@ MonoBehaviour:
   _smokeParticles: {fileID: 1890951905}
   _fireParticles: {fileID: 1902872806}
   _spriteRenderer: {fileID: 655032931}
+  _shop: {fileID: 104073698}
 --- !u!58 &2127608560
 CircleCollider2D:
   m_ObjectHideFlags: 0
