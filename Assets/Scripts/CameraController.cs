@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
     [SerializeField] private float _offsetSpeed;
+
     private float _targetHeight;
+
     public static CameraController Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     private void Update() {

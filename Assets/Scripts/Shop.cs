@@ -1,20 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour {
+    [Header("Shop Settings")]
     [SerializeField] private RectTransform _buttonParent;
+    private ShopButton[] _shopButtons;
+    private bool[] _isBoughtSkin;
+
+    [Header("Shop Elements")]
     [SerializeField] private ShopButton _buttonPrefab;
     [SerializeField] private Sprite[] _ballSkins;
     [SerializeField] private int _priseOfSkin = 100;
-    private ShopButton[] _shopButtons;
+
     private string _ballBuySave { get; } = "BallBuySave";
-    private bool[] _isBoughtSkin;
+
     public static Shop Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     void Start() {

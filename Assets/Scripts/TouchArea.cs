@@ -1,24 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler {
+    [Header("Panels")]
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _inGamePanel;
-    public static TouchArea Instance;
+
     public Basket CurrentBasket { private get; set; }
+
     private Vector2 _startPoint;
 
+    public static TouchArea Instance;
+
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     public void OnPointerDown(PointerEventData eventData) {
         Touch touch = Input.GetTouch(0);
         _startPoint = touch.position;
+
         _mainMenu.SetActive(false);
         _inGamePanel.SetActive(true);
+
         Ball.Instance.Configure(Vector3.zero, 0);
     }
 

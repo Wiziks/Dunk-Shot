@@ -1,34 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour {
+    [Header("Progress Text")]
     [SerializeField] private TextMeshProUGUI _finalScoreText;
     [SerializeField] private TextMeshProUGUI _bestScoreText;
     [SerializeField] private TextMeshProUGUI _startCountText;
+    private int _starCount;
+
+    [Header("Vibration Slider")]
     [SerializeField] private Slider _vibrationStateSlider;
+    private bool _isVibrationOn;
+
     private string _highScoreSave { get; } = "HighScoreSave";
     private string _nightModeSave { get; } = "NightModeSave";
     private string _starCountSave { get; } = "StarCountSave";
-    private bool _isVibrationOn;
     private string _vibrationStateSave { get; } = "VibrationStateSave";
     private string _choosenBallSkinSave { get; } = "ChoosenBallSkinSave";
+
     private int _choosenBallSkinSequenceNumber;
-    private int _starCount;
+
     public static GameManager Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+
         _choosenBallSkinSequenceNumber = PlayerPrefs.HasKey(_choosenBallSkinSave) ? PlayerPrefs.GetInt(_choosenBallSkinSave) : 0;
     }
 
     private void Start() {
         _starCount = PlayerPrefs.HasKey(_starCountSave) ? PlayerPrefs.GetInt(_starCountSave) : 500;
         UpdateStarCountText();
-
 
         if (PlayerPrefs.HasKey(_vibrationStateSave)) {
             _isVibrationOn = PlayerPrefs.GetInt(_vibrationStateSave) == 0 ? false : true;
@@ -63,6 +67,7 @@ public class GameManager : MonoBehaviour {
         }
 
         _bestScoreText.text = currentScore + "";
+
         PlayerPrefs.SetInt(_highScoreSave, currentScore);
         PlayerPrefs.Save();
     }
@@ -74,8 +79,10 @@ public class GameManager : MonoBehaviour {
 
     public void ChangeStarCount(int delta) {
         _starCount += delta;
+
         PlayerPrefs.SetInt(_starCountSave, _starCount);
         PlayerPrefs.Save();
+
         UpdateStarCountText();
     }
 
@@ -91,6 +98,7 @@ public class GameManager : MonoBehaviour {
     public void ChangeVibrationState() {
         _isVibrationOn = !_isVibrationOn;
         _vibrationStateSlider.SwitchState();
+
         PlayerPrefs.SetInt(_vibrationStateSave, _isVibrationOn ? 1 : 0);
         PlayerPrefs.Save();
     }

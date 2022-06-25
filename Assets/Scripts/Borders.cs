@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Borders : MonoBehaviour {
     [SerializeField] private PhysicsMaterial2D _borderPhysicsMaterial2D;
+
     private float _borderPosition;
+
     public static Borders Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     private void Start() {
         Vector2 instantiatePoint = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 2));
         _borderPosition = instantiatePoint.x;
+
         InstantiateBorders(_borderPosition + 0.5f);
     }
 

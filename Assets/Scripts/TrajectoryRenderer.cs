@@ -3,6 +3,7 @@ using UnityEngine;
 public class TrajectoryRenderer : MonoBehaviour {
     [SerializeField] private SpriteRenderer _dotPrefab;
     [SerializeField] private int _dotCount = 10;
+
     private SpriteRenderer[] dotsArray;
 
     private void Start() {

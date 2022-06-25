@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum BasketState {
@@ -8,22 +7,30 @@ public enum BasketState {
 }
 
 public class Basket : MonoBehaviour {
+    [Header("Visual Parts")]
     [SerializeField] private Color _dynamicRingColor;
     [SerializeField] private Color _staticRingColor;
-    [SerializeField] private Transform _mesh;
-    [SerializeField] private float _maxScaleOfMesh = 0.5f;
-    [SerializeField] private Transform _ballTargetPoint;
     [SerializeField] private SpriteRenderer _upperRing;
     [SerializeField] private SpriteRenderer _lowerRing;
+
+    [Header("Mesh")]
+    [SerializeField] private Transform _mesh;
+    [SerializeField] private float _maxScaleOfMesh = 0.5f;
+    private float _startMeshYScale;
+
+    [Header("Visual Effects")]
     [SerializeField] private Animator _effectAnimator;
     [SerializeField] private AnimationClip _throwAnimation;
     [SerializeField] private SpriteRenderer _inRingEffect;
+
+    [Header("Points")]
+    [SerializeField] private Transform _ballTargetPoint;
     [SerializeField] private Transform _starPositionPoint;
     [SerializeField] private Transform _leftWallPositionPoint;
     [SerializeField] private Transform _rightWallPositionPoint;
     [SerializeField] private Transform _bouncerPositionPoint;
+
     private BasketState _basketState;
-    private float _startMeshYScale;
     private float _startBallTargetYPosition;
     private float _ballSpeed;
     private bool _firstTimeInBasket = true;
@@ -32,7 +39,7 @@ public class Basket : MonoBehaviour {
         _basketState = BasketState.Static;
         ChangeRingColor();
 
-        _effectAnimator.enabled = false;
+        _effectAnimator.gameObject.SetActive(false);
 
         _startMeshYScale = _mesh.localScale.y;
         _startBallTargetYPosition = _ballTargetPoint.localPosition.y;
@@ -55,7 +62,6 @@ public class Basket : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-
         TouchArea.Instance.CurrentBasket = this;
         _basketState = BasketState.Dynamic;
         ChangeRingColor();

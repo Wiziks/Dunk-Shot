@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,19 +8,23 @@ enum SliderState {
 }
 
 public class Slider : MonoBehaviour {
+    [Header("Color")]
     [SerializeField] private Color _enableColor;
     [SerializeField] private Color _disableColor;
+
+    [Header("Slider Parts")]
     [SerializeField] private Image _onText;
     [SerializeField] private Image _offText;
     [SerializeField] private Image _switcher;
+    [SerializeField] private Image _imageComponent;
+
+    [Header("Slider Parameters")]
     [SerializeField] private Vector3 _onSwitcherPosition;
     [SerializeField] private Vector3 _offSwitcherPosition;
     [SerializeField] private float _timeToSwitchState;
-    [SerializeField] private Image _imageComponent;
+
     private SliderState _sliderState;
 
-
-    [ContextMenu("Switch State")]
     public void SwitchState() {
         if (_sliderState == SliderState.ON)
             SwitchOff();

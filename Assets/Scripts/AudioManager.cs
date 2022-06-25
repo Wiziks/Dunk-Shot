@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
+    [Header("Audio Clips")]
     [SerializeField] private AudioClip _basketSpawn;
     [SerializeField] private AudioClip _buttonClick;
     [SerializeField] private AudioClip _borderBall;
@@ -22,15 +21,22 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioClip _shopBuy;
     [SerializeField] private AudioClip _shopLocked;
     [SerializeField] private AudioClip _shopSelect;
-    [SerializeField] private Slider _soundStateSlider;
+
+    [Header("Audio Sources")]
     [SerializeField] private AudioSource _mainAudioSource;
     [SerializeField] private AudioSource _playerAudioSource;
+
+
+    [Header("Sound Slider")]
+    [SerializeField] private Slider _soundStateSlider;
+
     private bool _isAudioOn;
     private string _audioStateSave { get; } = "AudioStateSave";
     public static AudioManager Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     private void Start() {
@@ -76,7 +82,6 @@ public class AudioManager : MonoBehaviour {
     public void PlayReleaseLow() {
         if (_isAudioOn)
             _playerAudioSource.PlayOneShot(_releaseLow);
-        Debug.Log("PlayReleaseLow");
     }
 
     public void PlayReleaseMedium() {
@@ -149,6 +154,7 @@ public class AudioManager : MonoBehaviour {
     public void ChangeAudioState() {
         _isAudioOn = !_isAudioOn;
         _soundStateSlider.SwitchState();
+
         PlayerPrefs.SetInt(_audioStateSave, _isAudioOn ? 1 : 0);
         PlayerPrefs.Save();
     }

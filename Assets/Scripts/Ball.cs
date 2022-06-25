@@ -1,34 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
-    public static Ball Instance;
+    [Header("Ball Characteristics")]
     [SerializeField] private float _power = 0.05f;
     [SerializeField] private float _minSpeedMagnitude = 200f;
     [SerializeField] private float _maxSpeedMagnitude = 450f;
+    private Vector3 _startSpeed;
+    private float _currentSpeedMagnitude;
+
+    [Header("Trajectory")]
     [SerializeField] private TrajectoryRenderer _trajectoryRenderer;
+
+    [Header("Panels")]
     [SerializeField] private GameObject _inGamePanel;
     [SerializeField] private GameObject _losePanel;
+
+    [Header("Visual Effects")]
     [SerializeField] private TextAnnouncers _textAnnouncers;
-    [SerializeField] private float _timeToRespawn = 10f;
-    [SerializeField] private GameObject _stuckButton;
     [SerializeField] private GameObject _smokeParticles;
     [SerializeField] private GameObject _fireParticles;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Shop _shop;
-    private Rigidbody2D _ballRb;
-    private Vector3 _startSpeed;
-    private float _currentSpeedMagnitude;
     private int _perfectThrowsStrike = 0;
     private int _bounceStrike = 0;
-    private bool _isBasketStarting = true;
-    private Transform _respawnPoint;
+
+    [Header("Stuck Protection")]
+    [SerializeField] private float _timeToRespawn = 10f;
+    [SerializeField] private GameObject _stuckButton;
     private float _timer;
+    private Transform _respawnPoint;
+
+    private Rigidbody2D _ballRb;
+    private bool _isBasketStarting = true;
     private bool _isThrown;
+    public static Ball Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     void Start() {
@@ -105,16 +114,20 @@ public class Ball : MonoBehaviour {
 
         _ballRb.bodyType = RigidbodyType2D.Dynamic;
         _ballRb.AddForce(_startSpeed, ForceMode2D.Impulse);
-        _ballRb.AddTorque(0.1f, ForceMode2D.Impulse);
+        _ballRb.AddTorque(0.2f, ForceMode2D.Impulse);
+
         _trajectoryRenderer.HideTrajectory();
+
         currentBasket.PlayThrowEffect();
         currentBasket.BasketState = BasketState.Static;
     }
 
     private void GameOver() {
         _isThrown = false;
+
         _inGamePanel.SetActive(false);
         _losePanel.SetActive(true);
+
         BasketManager.Instance.GameOver();
         AudioManager.Instance.PlayGameOver();
     }

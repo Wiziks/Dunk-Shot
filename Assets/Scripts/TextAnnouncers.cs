@@ -4,14 +4,22 @@ using UnityEngine;
 using TMPro;
 
 public class TextAnnouncers : MonoBehaviour {
+    [Header("Text Announcers Transform")]
     [SerializeField] private RectTransform _textAnnouncersRect;
+
+    [Header("Text Of Announcers")]
     [SerializeField] private TextMeshProUGUI _perfectText;
     [SerializeField] private TextMeshProUGUI _bounceText;
     [SerializeField] private TextMeshProUGUI _throwScoreText;
+
+    [Header("Visual Parameters")]
     [SerializeField] private int _flowDistance;
     [SerializeField] private float _flowTime;
     [SerializeField] private float _flowTimeInterval;
+
+
     private Queue<TextMeshProUGUI> textAnnouncersQueue = new Queue<TextMeshProUGUI>();
+
     private Camera _mainCamera;
 
     private void Start() {

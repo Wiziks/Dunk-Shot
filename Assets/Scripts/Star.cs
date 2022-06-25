@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Star : MonoBehaviour {
@@ -9,7 +7,7 @@ public class Star : MonoBehaviour {
     private bool _up;
 
     private void Start() {
-        _startPosition = transform.position;
+        UpdateStartPosition();
     }
 
     void Update() {
@@ -17,6 +15,10 @@ public class Star : MonoBehaviour {
 
         if (Mathf.Abs(transform.position.y - _startPosition.y) > _distanceToSwitchDirection)
             _up = !_up;
+    }
+
+    public void UpdateStartPosition() {
+        _startPosition = transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

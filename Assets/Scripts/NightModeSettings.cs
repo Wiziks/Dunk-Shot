@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NightModeSettings : MonoBehaviour {
+    [Header("Mode Colors")]
     [SerializeField] private Color _normalModeColor;
     [SerializeField] private Color _nightModeColor;
+
+    [Header("Sensitive To Night Mode")]
     [SerializeField] private SpriteRenderer _background;
     [SerializeField] private Image _inGamePause;
     [SerializeField] private Image _settings;
     [SerializeField] private Image _shop;
+
+    [Header("Button Visual")]
     [SerializeField] private Image _lampTurnOn;
     [SerializeField] private Image _lampTurnOff;
     [SerializeField] private Slider _nightModeSlider;
+
     private bool _isNightMode;
 
     private void Start() {
@@ -27,40 +31,31 @@ public class NightModeSettings : MonoBehaviour {
         } else {
             _isNightMode = false;
         }
+
         SwitchNightMode();
     }
 
     public void SwitchNightMode() {
+        _isNightMode = !_isNightMode;
+
+        Color currentColor = _isNightMode ? _nightModeColor : _normalModeColor;
+        _background.color = currentColor;
+        _inGamePause.color = currentColor;
+        _settings.color = currentColor;
+        _shop.color = currentColor;
+
+        _lampTurnOn.enabled = _isNightMode;
+        _lampTurnOff.enabled = !_isNightMode;
+
+        PlayerPrefs.SetInt(GameManager.Instance.NightModeSave, _isNightMode ? 0 : 1);
+        PlayerPrefs.Save();
+
         if (_isNightMode) {
-            _isNightMode = false;
-
-            _background.color = _normalModeColor;
-            _inGamePause.color = _normalModeColor;
-            _settings.color = _normalModeColor;
-            _shop.color = _normalModeColor;
-
-            _lampTurnOn.enabled = false;
-            _lampTurnOff.enabled = true;
-
-            PlayerPrefs.SetInt(GameManager.Instance.NightModeSave, 1);
-            PlayerPrefs.Save();
-            _nightModeSlider.SwitchOff();
-            AudioManager.Instance.PlayNightModeOff();
-        } else {
-            _isNightMode = true;
-
-            _background.color = _nightModeColor;
-            _inGamePause.color = _nightModeColor;
-            _settings.color = _nightModeColor;
-            _shop.color = _nightModeColor;
-
-            _lampTurnOn.enabled = true;
-            _lampTurnOff.enabled = false;
-
-            PlayerPrefs.SetInt(GameManager.Instance.NightModeSave, 0);
-            PlayerPrefs.Save();
             _nightModeSlider.SwitchOn();
             AudioManager.Instance.PlayNightModeOn();
+        } else {
+            _nightModeSlider.SwitchOff();
+            AudioManager.Instance.PlayNightModeOff();
         }
     }
 }

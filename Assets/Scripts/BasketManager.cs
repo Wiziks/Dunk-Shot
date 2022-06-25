@@ -1,6 +1,4 @@
-using System.Collections;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -19,25 +17,35 @@ enum SpawnVariantsByModificators {
 }
 
 public class BasketManager : MonoBehaviour {
+    [Header("Spawn Parameters")]
     [SerializeField] private Basket _basketPrefab;
-    [SerializeField] private Vector3 _firstBasketPosition;
-    [SerializeField] private Vector3 _secondBasketPosition;
     [SerializeField] private float _minXBound;
     [SerializeField] private float _maxXBound;
     [SerializeField] private float _minYBound;
     [SerializeField] private float _maxYBound;
+
+    [Header("First Baskets")]
+    [SerializeField] private Vector3 _firstBasketPosition;
+    [SerializeField] private Vector3 _secondBasketPosition;
+    private bool _isBasketStarting;
+
+    [Header("Score")]
     [SerializeField] private TextMeshProUGUI _scoreText;
+    private int _score = 0;
+
+    [Header("Modificators")]
     [SerializeField] private Transform _bouncer;
     [SerializeField] private Transform _wall;
     [SerializeField] private Star _star;
+
     private Basket[] _basketPool;
     private int currentPoolIndex = 0;
-    private bool _isBasketStarting;
-    private int _score = 0;
+
     public static BasketManager Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
     private void Start() {
@@ -93,6 +101,7 @@ public class BasketManager : MonoBehaviour {
         if ((SpawnVariantsByModificators)randomSpawnByModificatorsVariant == SpawnVariantsByModificators.Star) {
             _star.transform.position = _basketPool[currentPoolIndex].StarPosition;
             _star.gameObject.SetActive(true);
+            _star.UpdateStartPosition();
         } else if ((SpawnVariantsByModificators)randomSpawnByModificatorsVariant == SpawnVariantsByModificators.Wall) {
             Vector3 wallPosition;
 
