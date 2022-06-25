@@ -5612,15 +5612,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271857859}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 770837396}
   - {fileID: 862423032}
   - {fileID: 939394184}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 1021531328}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &271857861
 MonoBehaviour:
@@ -5635,12 +5635,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _basketPrefab: {fileID: 3212722794804746979, guid: e824bf7b9392a2f44b67441238bd1217, type: 3}
-  _firstBasketPosition: {x: -1.25, y: -2, z: 0}
-  _secondBasketPosition: {x: 1.5, y: -0.25, z: 0}
   _minXBound: 0.5
   _maxXBound: 2.25
   _minYBound: 0.75
   _maxYBound: -1
+  _firstBasketPosition: {x: -1.25, y: -2, z: 0}
+  _secondBasketPosition: {x: 1.5, y: -0.25, z: 0}
   _scoreText: {fileID: 1037453885}
   _bouncer: {fileID: 862423032}
   _wall: {fileID: 770837396}
@@ -7122,12 +7122,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631632678}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1021531328}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &631632680
 MonoBehaviour:
@@ -13592,6 +13592,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979484861}
   m_CullTransparentMesh: 1
+--- !u!1 &1021531327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1021531328}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1021531328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021531327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 271857860}
+  - {fileID: 631632679}
+  - {fileID: 1873068552}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1031000494
 GameObject:
   m_ObjectHideFlags: 0
@@ -13690,6 +13723,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1873068554}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14247,6 +14292,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1873068554}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15209,7 +15266,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1657078363
 MonoBehaviour:
@@ -15704,12 +15761,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873068551}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1021531328}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1873068553
 AudioSource:
@@ -15848,9 +15905,9 @@ MonoBehaviour:
   _shopBuy: {fileID: 8300000, guid: 8fc69ffcb16c6ca42b7b540c44add822, type: 3}
   _shopLocked: {fileID: 8300000, guid: b6e38e2d8101abc46a47a332c55d4043, type: 3}
   _shopSelect: {fileID: 8300000, guid: b03818e161ed4d141ac48df3129bd199, type: 3}
-  _soundStateSlider: {fileID: 1412523057}
   _mainAudioSource: {fileID: 1873068553}
   _playerAudioSource: {fileID: 1873068555}
+  _soundStateSlider: {fileID: 1412523057}
 --- !u!82 &1873068555
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20845,6 +20902,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1873068554}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1892025552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21887,12 +21956,12 @@ MonoBehaviour:
   _inGamePanel: {fileID: 537069422}
   _losePanel: {fileID: 734374781}
   _textAnnouncers: {fileID: 880742893}
-  _timeToRespawn: 10
-  _stuckButton: {fileID: 2107319285}
   _smokeParticles: {fileID: 1890951905}
   _fireParticles: {fileID: 1902872806}
   _spriteRenderer: {fileID: 655032931}
   _shop: {fileID: 104073698}
+  _timeToRespawn: 10
+  _stuckButton: {fileID: 2107319285}
 --- !u!58 &2127608560
 CircleCollider2D:
   m_ObjectHideFlags: 0
