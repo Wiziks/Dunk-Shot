@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioClip _basketSpawn;
+    [SerializeField] private AudioClip _buttonClick;
     [SerializeField] private AudioClip _borderBall;
     [SerializeField] private AudioClip _coin;
     [SerializeField] private AudioClip _gameOver;
@@ -52,6 +53,11 @@ public class AudioManager : MonoBehaviour {
             _mainAudioSource.PlayOneShot(_basketSpawn);
     }
 
+    public void PlayButtonClick() {
+        if (_isAudioOn)
+            _mainAudioSource.PlayOneShot(_buttonClick);
+    }
+
     public void PlayBorderBall() {
         if (_isAudioOn)
             _mainAudioSource.PlayOneShot(_borderBall);
@@ -70,6 +76,7 @@ public class AudioManager : MonoBehaviour {
     public void PlayReleaseLow() {
         if (_isAudioOn)
             _playerAudioSource.PlayOneShot(_releaseLow);
+        Debug.Log("PlayReleaseLow");
     }
 
     public void PlayReleaseMedium() {

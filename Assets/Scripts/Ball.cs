@@ -139,10 +139,10 @@ public class Ball : MonoBehaviour {
     }
 
     public void TurnOnEffects() {
-        if (_perfectThrowsStrike == 1) {
+        if (_perfectThrowsStrike == 2) {
             _smokeParticles.SetActive(true);
             _fireParticles.SetActive(false);
-        } else if (_perfectThrowsStrike > 1) {
+        } else if (_perfectThrowsStrike > 2) {
             _smokeParticles.SetActive(false);
             _fireParticles.SetActive(true);
         } else {
