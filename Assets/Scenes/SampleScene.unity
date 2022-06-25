@@ -15820,7 +15820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _basketSpawn: {fileID: 8300000, guid: bf491f1cc75b9c2438f0d122aad2c4c7, type: 3}
-  _buttonClick: {fileID: 0}
+  _buttonClick: {fileID: 8300000, guid: 2dc4d41868ea8f94592544fe1dd87c4e, type: 3}
   _borderBall: {fileID: 8300000, guid: 61dcd85cc14b77d49ad969cb9137b095, type: 3}
   _coin: {fileID: 8300000, guid: 69ca78ae338dade46adf7b4d90bb9995, type: 3}
   _gameOver: {fileID: 8300000, guid: 8460b7f4b5a8922478931126ec8e380f, type: 3}
