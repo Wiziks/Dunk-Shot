@@ -30,6 +30,9 @@ public class Basket : MonoBehaviour {
     [SerializeField] private Transform _rightWallPositionPoint;
     [SerializeField] private Transform _bouncerPositionPoint;
 
+    [Header("Trigger")]
+    [SerializeField] private BoxCollider2D _basketTrigger;
+
     private BasketState _basketState;
     private float _startBallTargetYPosition;
     private float _ballSpeed;
@@ -63,7 +66,7 @@ public class Basket : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         TouchArea.Instance.CurrentBasket = this;
-        _basketState = BasketState.Dynamic;
+        BasketState = BasketState.Dynamic;
         ChangeRingColor();
 
         _ballSpeed = Ball.Instance.Speed;
@@ -164,7 +167,13 @@ public class Basket : MonoBehaviour {
 
     public Vector3 BouncerPosition { get => _bouncerPositionPoint.position; }
 
-    public BasketState BasketState { get => _basketState; set => _basketState = value; }
+    public BasketState BasketState {
+        get => _basketState;
+        set {
+            _basketState = value;
+            _basketTrigger.size = (_basketState == BasketState.Static) ? new Vector2(0.5f, 0.05f) : new Vector2(2f, 2f);
+        }
+    }
 
     public bool FirstTimeInBasket { set => _firstTimeInBasket = value; }
 }
