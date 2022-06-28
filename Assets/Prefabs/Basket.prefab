@@ -836,14 +836,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dynamicRingColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
   _staticRingColor: {r: 0.8117647, g: 0.32156864, b: 0.20392157, a: 1}
-  _mesh: {fileID: 3212722795021952529}
-  _maxScaleOfMesh: 0.5
-  _ballTargetPoint: {fileID: 3212722794910200681}
   _upperRing: {fileID: 3212722795915210046}
   _lowerRing: {fileID: 3212722795683148826}
+  _mesh: {fileID: 3212722795021952529}
+  _maxScaleOfMesh: 0.5
   _effectAnimator: {fileID: 1005702975}
   _throwAnimation: {fileID: 7400000, guid: e3d4c7fe4030aa44f8200a43ea19e072, type: 2}
   _inRingEffect: {fileID: 109883600}
+  _ballTargetPoint: {fileID: 3212722794910200681}
   _starPositionPoint: {fileID: 1139358918}
   _leftWallPositionPoint: {fileID: 158005769}
   _rightWallPositionPoint: {fileID: 742579411}
@@ -861,7 +861,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.22936243}
+  m_Offset: {x: 0, y: -0.32942277}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 1}
@@ -872,7 +872,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.545748, y: 0.02922666}
+  m_Size: {x: 0.545748, y: 0.22934698}
   m_EdgeRadius: 0
 --- !u!61 &3212722794804746909
 BoxCollider2D:
