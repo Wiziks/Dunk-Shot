@@ -50,7 +50,7 @@ public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     }
 
     public void OnPointerUp(PointerEventData eventData) {
-        if(CurrentBasket)
+        if (CurrentBasket)
             if (CurrentBasket.BasketState == BasketState.Dynamic)
                 Ball.Instance.ThrowBall(CurrentBasket);
     }
