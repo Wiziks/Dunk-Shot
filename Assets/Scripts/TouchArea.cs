@@ -24,7 +24,8 @@ public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         _mainMenu.SetActive(false);
         _inGamePanel.SetActive(true);
 
-        Ball.Instance.Configure(Vector3.zero, 0);
+        if(Ball.Instance)
+            Ball.Instance.Configure(Vector3.zero, 0);
     }
 
     public void OnDrag(PointerEventData eventData) {
@@ -45,8 +46,10 @@ public class TouchArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
             distance = Ball.Instance.MaxSpeedMagnitude;
         }
 
-        CurrentBasket.Configure(angle, distance);
-        Ball.Instance.Configure(delta, distance);
+        if(Ball.Instance && CurrentBasket){
+            CurrentBasket.Configure(angle, distance);
+            Ball.Instance.Configure(delta, distance);
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData) {
