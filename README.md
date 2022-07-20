@@ -1,31 +1,8 @@
-# **Клон игры Dunk Shot**
-
-Что **НЕ** нужно реализовывать:
-
-- рекламу
-- лидерборд
-
-Что нужно реализовать:
-
-- кор геймплей (спавн корзин, бросок мяча
-- показ траектории мячика
-- счетчик прогресса
-- счетчик звезд
-- экраны: меню, ингейм, окно паузы,  проигрыш уровня, окно настроек
-- смена фона с белого на черный
-- базовые звуки
-
-Что опционально можно реализовать:
-
-- экран настроек
-- текстовые анонсеры, которые появляются когда мяч попадает в корзину
-- скины мячика
-- препятствия, которые появляются случайным образом
-
-**Требования:**
-
-- графика должна быть схожа с основной игрой. Нужно найти в интернете.
-- ui приложения должен быть адаптирован под разные разрешения. (9:20, 3:4 и тд)
-- версия Unity **2020.3.11**
-- результат выполнения - Unity Project, должен быть залит на гит
-- время выполнения - 5 рабочих дней
+# Dunk Shot
+**Dunk Shot** is a clone of the hypercasual game of the same name. The main gameplay is to throw the ball into as many volleyball rings as possible. Additional functions are available:
++ Switching the night mode. In fact, there are two standard themes available in the game: light and dark. They can be switched either in the game settings or on its main screen.
++ The skin shop is accessible both from the main screen and from the game pause. Skins are available for the in-game currency "stars", which with some chance appear above the volleyball rings.
++ With some chance, obstacles may appear. They are located near the rings. It can be either a wall or a circle.
++ When the player is still aiming the ball, his further trajectory is shown. It can react to the outer walls of the screen.
++ With several successful hits in a row, the ball seems to "light up", and bonus points are added to the score.
++ When hitting any object, except for the ring, bonus points are added
